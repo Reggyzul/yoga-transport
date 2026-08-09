@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Home, 
@@ -15,8 +15,8 @@ import {
   ChevronUp,
   X,
   Sparkles,
-  ArrowRight,
-  Maximize2
+  Maximize2,
+  Clock
 } from 'lucide-react';
 import { TRANSLATIONS } from '../utils/translations';
 
@@ -39,11 +39,12 @@ export interface RoomType {
 
 export default function HomestaySection({ lang }: HomestaySectionProps) {
   const t = TRANSLATIONS[lang];
+  const [activeBranch, setActiveBranch] = useState<'rja1' | 'rja2'>('rja1');
   const [showCatalogModal, setShowCatalogModal] = useState<boolean>(false);
   const [expandedRoomId, setExpandedRoomId] = useState<string | null>('sweet-room');
 
   // Prevent background page scrolling when modal is open
-  React.useEffect(() => {
+  useEffect(() => {
     if (showCatalogModal) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -54,6 +55,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
     };
   }, [showCatalogModal]);
 
+  // RJA 1 ROOM CATALOG DATA
   const rja1Rooms: RoomType[] = [
     {
       id: 'sweet-room',
@@ -305,6 +307,125 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
     }
   ];
 
+  // RJA 2 ROOM CATALOG DATA
+  const rja2Rooms: RoomType[] = [
+    {
+      id: 'standar-room-rja2',
+      name: 'Standar Room (RJA 2)',
+      badge: 'Water Heater + Smart TV (Max 5 Orang)',
+      capacity: 'Maksimal 5 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 225.000 / orang', totalNote: 'Total Rp 225.000' },
+        { pax: '2 Orang', rate: 'Rp 115.000 / orang', totalNote: 'Total Rp 230.000' },
+        { pax: '3 Orang', rate: 'Rp 86.600 / orang', totalNote: 'Total Rp 260.000' },
+        { pax: '4 Orang', rate: 'Rp 77.500 / orang', totalNote: 'Total Rp 310.000' },
+        { pax: '5 Orang', rate: 'Rp 70.000 / orang', totalNote: 'Total Rp 350.000' }
+      ],
+      facilities: [
+        'Kamar Mandi Dalam dengan Water Heater (Air Panas)',
+        'Bed Atas (160 x 200 cm) + Bed Bawah (120 x 200 cm)',
+        'Smart TV & Wi-Fi Cepat Gratis',
+        'Kipas Angin & Jendela Besar (Sirkulasi Udara Bagus)',
+        'Ukuran Kamar Luas (3.7m x 3.6m) & Closet Jongkok'
+      ],
+      bedInfo: 'Bed Atas (160x200) + Bed Bawah (120x200)',
+      bathroom: 'Kamar Mandi Dalam + Water Heater',
+      tv: 'Smart TV',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Standar Room (Water heater, Smart TV, max 5 orang).'
+    },
+    {
+      id: 'big-premium-rja2',
+      name: 'Big Premium (RJA 2)',
+      badge: 'Full AC + Water Heater & Smart TV (Max 5 Orang)',
+      capacity: 'Maksimal 5 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 275.000 / orang', totalNote: 'Total Rp 275.000' },
+        { pax: '2 Orang', rate: 'Rp 137.500 / orang', totalNote: 'Total Rp 275.000' },
+        { pax: '3 Orang', rate: 'Rp 100.000 / orang', totalNote: 'Total Rp 300.000' },
+        { pax: '4 Orang', rate: 'Rp 92.500 / orang', totalNote: 'Total Rp 370.000' },
+        { pax: '5 Orang', rate: 'Rp 84.500 / orang', totalNote: 'Total Rp 422.500' }
+      ],
+      facilities: [
+        'Full Air Conditioner (AC) & Smart TV',
+        'Kamar Mandi Dalam + Water Heater (Air Panas)',
+        'Bed Atas (160 x 200 cm) + Extra Bed Bawah (120 x 200 cm)',
+        'Wi-Fi Cepat Gratis 24 Jam',
+        'Ukuran Kamar Luas (3.7m x 3.5m) & Closet Jongkok'
+      ],
+      bedInfo: 'Bed Atas (160x200) + Bed Bawah (120x200)',
+      bathroom: 'Kamar Mandi Dalam + Water Heater',
+      tv: 'Smart TV + AC',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Big Premium (Full AC, Water Heater, Smart TV, max 5 orang).'
+    },
+    {
+      id: 'small-premium-rja2',
+      name: 'Small Premium (RJA 2)',
+      badge: 'Full AC + Water Heater & Smart TV (Max 3 Orang)',
+      capacity: 'Maksimal 3 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 250.000 / orang', totalNote: 'Total Rp 250.000' },
+        { pax: '2 Orang', rate: 'Rp 125.000 / orang', totalNote: 'Total Rp 250.000' },
+        { pax: '3 Orang', rate: 'Rp 100.000 / orang', totalNote: 'Total Rp 300.000' }
+      ],
+      facilities: [
+        'Full Air Conditioner (AC) & Smart TV',
+        'Kamar Mandi Dalam + Water Heater (Air Panas)',
+        'Bed Atas (120 x 200 cm) + Extra Bed Bawah (100 x 200 cm)',
+        'Wi-Fi Cepat Gratis 24 Jam',
+        'Ukuran Kamar Nyaman & Closet Jongkok'
+      ],
+      bedInfo: 'Bed Atas (120x200) + Extra Bed (100x200)',
+      bathroom: 'Kamar Mandi Dalam + Water Heater',
+      tv: 'Smart TV + AC',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Small Premium (Full AC, Water Heater, Smart TV, max 3 orang).'
+    },
+    {
+      id: 'room-tujuh-rja2',
+      name: 'Room Tujuh (RJA 2)',
+      badge: 'Full AC + Wi-Fi (Max 5 Orang)',
+      capacity: 'Maksimal 5 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 225.000 / orang', totalNote: 'Total Rp 225.000' },
+        { pax: '2 Orang', rate: 'Rp 112.500 / orang', totalNote: 'Total Rp 225.000' },
+        { pax: '3 Orang', rate: 'Rp 85.000 / orang', totalNote: 'Total Rp 255.000' },
+        { pax: '4 Orang', rate: 'Rp 75.000 / orang', totalNote: 'Total Rp 300.000' },
+        { pax: '5 Orang', rate: 'Rp 68.000 / orang', totalNote: 'Total Rp 340.000' }
+      ],
+      facilities: [
+        'Full Air Conditioner (AC) & Wi-Fi Cepat Gratis',
+        'Bed Atas (160 x 200 cm) + Extra Bed Bawah (120 x 200 cm)',
+        'Kamar Mandi Dalam',
+        'Non Water Heater & Closet Jongkok',
+        'Gantungan Baju & Selimut'
+      ],
+      bedInfo: 'Bed Atas (160x200) + Bed Bawah (120x200)',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'AC Available',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Room Tujuh (Full AC, max 5 orang).'
+    },
+    {
+      id: 'room-delapan-kiara-eliza-jumbo',
+      name: 'Room Delapan / Kiara / Eliza / Jumbo Room',
+      badge: 'Pilihan Kamar Tambahan RJA 2',
+      capacity: 'Kapasitas 4 - 8+ Orang',
+      pricing: [
+        { pax: 'Rombongan 4 - 8 Orang', rate: 'Mulai Rp 50.000 - Rp 90.000 / orang' }
+      ],
+      facilities: [
+        'Pilihan Kamar Mandi Dalam / Luar',
+        'Tersedia Opsi Full AC / Kipas Angin',
+        'Smart TV & Wi-Fi Cepat Gratis',
+        'Selimut & Perlengkapan Mandi Lengkap'
+      ],
+      bedInfo: 'Twin / Queen / Bunk Beds',
+      bathroom: 'Kamar Mandi Bersih',
+      tv: 'TV / AC Available',
+      waMessage: 'Halo Yoga Transport, saya ingin tanya info ketersediaan Room Delapan / Kiara / Eliza / Jumbo Room di RJA 2.'
+    }
+  ];
+
+  const currentRooms = activeBranch === 'rja1' ? rja1Rooms : rja2Rooms;
+
   const handleWhatsApp = (msg: string) => {
     const waNumber = '628813305066';
     window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(msg)}`, '_blank', 'noreferrer');
@@ -318,12 +439,21 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
     }
   };
 
+  const handleSelectBranch = (branch: 'rja1' | 'rja2') => {
+    setActiveBranch(branch);
+    if (branch === 'rja1') {
+      setExpandedRoomId('sweet-room');
+    } else {
+      setExpandedRoomId('standar-room-rja2');
+    }
+  };
+
   return (
     <section id="penginapan" className="py-20 bg-gradient-to-b from-white via-gray-50 to-white font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
           <span className="font-display font-bold text-xs sm:text-sm text-[#d97706] tracking-widest uppercase bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200/60 inline-block">
             {lang === 'EN' ? 'OFFICIAL HOMESTAY PARTNER' : 'KATALOG PENGINAPAN HOMESTAY RJA'}
           </span>
@@ -341,106 +471,266 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
           </p>
         </div>
 
-        {/* MAIN SHOWCASE CARD FOR HOMESTAY RJA 1 (SINGLE PINK HOUSE IMAGE) */}
-        <div className="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 group">
-          
-          {/* Left: Main Pink House Building Photo */}
-          <div 
-            onClick={() => setShowCatalogModal(true)}
-            className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] bg-gray-900 overflow-hidden cursor-pointer"
+        {/* BRANCH SELECTOR BUTTONS AT TOP (RJA 1 vs RJA 2) */}
+        <div className="flex justify-center gap-3 sm:gap-4 mb-10">
+          <button
+            onClick={() => handleSelectBranch('rja1')}
+            className={`px-6 sm:px-8 py-3.5 rounded-2xl font-display font-extrabold text-xs sm:text-sm transition-all cursor-pointer shadow-sm flex items-center gap-2.5 border ${
+              activeBranch === 'rja1'
+                ? 'bg-luxury-black text-luxury-gold border-luxury-gold shadow-lg scale-[1.03] ring-2 ring-amber-400/20'
+                : 'bg-white text-gray-700 border-gray-200 hover:border-luxury-gold hover:text-luxury-gold'
+            }`}
           >
-            <img
-              src="/rja1.png"
-              alt="Homestay RJA 1 Malang Pink House"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            
-            <div className="absolute top-4 right-4 bg-luxury-gold text-black font-display font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-pulse">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Klik Untuk Lihat Katalog</span>
-            </div>
+            <Building className="w-4.5 h-4.5" />
+            <span>RJA 1 - Jl. Jaksa Agung Suprapto</span>
+            <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase ${
+              activeBranch === 'rja1' ? 'bg-[#f59e0b] text-black' : 'bg-amber-100 text-[#d97706]'
+            }`}>
+              Pusat Kota
+            </span>
+          </button>
 
-            <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-              <span className="bg-[#f59e0b] text-gray-950 font-display font-extrabold text-[10px] uppercase px-3 py-1 rounded-md tracking-wider shadow-md">
-                Gedung Utama RJA 1
-              </span>
-              <h3 className="font-display font-extrabold text-2xl sm:text-3xl drop-shadow-md">
-                RJA 1 Homestay Malang
-              </h3>
-              <p className="font-sans text-xs text-gray-200 flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-[#f59e0b] shrink-0" />
-                <span>Jl. Jaksa Agung Suprapto, Klojen, Kota Malang (Pusat Kota)</span>
-              </p>
-            </div>
-          </div>
-
-          {/* Right: Info & Pop-Up Trigger CTA Button */}
-          <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#d97706]">
-                    LOKASI PUSAT KOTA MALANG
-                  </span>
-                  <h4 className="font-display font-extrabold text-xl text-gray-900">
-                    Penginapan RJA 1 - Jaksa Agung Suprapto
-                  </h4>
-                </div>
-              </div>
-
-              <p className="font-sans text-gray-600 text-xs sm:text-sm leading-relaxed">
-                Gedung homestay 2 lantai berwarna khas pink yang bersih, aman, dan berlokasi sangat strategis di pusat Kota Malang. Tersedia 11 pilihan tipe kamar lengkap (Sweet Room, Green Room, Room Tiga, Family Room, dll).
-              </p>
-
-              {/* Amenities Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
-                  <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
-                  <span>Wi-Fi Cepat Gratis 24 Jam</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
-                  <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
-                  <span>Area Parkir Luas & Aman</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
-                  <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
-                  <span>Full AC / Kipas & Smart TV</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
-                  <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
-                  <span>Kamar Mandi Dalam / Luar</span>
-                </div>
-              </div>
-            </div>
-
-            {/* MAIN CTA BUTTON: TRIGGER POP-UP MODAL */}
-            <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-              <div>
-                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
-                  PILIHAN KAMAR LENGKAP
-                </span>
-                <span className="font-display font-bold text-xs text-[#d97706]">
-                  11 Tipe Kamar RJA 1
-                </span>
-              </div>
-
-              <button
-                onClick={() => setShowCatalogModal(true)}
-                className="bg-[#d97706] hover:bg-[#b45309] text-white font-display font-extrabold text-xs py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
-              >
-                <Maximize2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span>Lihat Katalog Kamar & Harga</span>
-              </button>
-            </div>
-
-          </div>
-
+          <button
+            onClick={() => handleSelectBranch('rja2')}
+            className={`px-6 sm:px-8 py-3.5 rounded-2xl font-display font-extrabold text-xs sm:text-sm transition-all cursor-pointer shadow-sm flex items-center gap-2.5 border ${
+              activeBranch === 'rja2'
+                ? 'bg-luxury-black text-luxury-gold border-luxury-gold shadow-lg scale-[1.03] ring-2 ring-amber-400/20'
+                : 'bg-white text-gray-700 border-gray-200 hover:border-luxury-gold hover:text-luxury-gold'
+            }`}
+          >
+            <Home className="w-4.5 h-4.5" />
+            <span>RJA 2 - Jl. Tawangmangu</span>
+            <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase ${
+              activeBranch === 'rja2' ? 'bg-[#f59e0b] text-black' : 'bg-amber-100 text-[#d97706]'
+            }`}>
+              Cozy & Pastel
+            </span>
+          </button>
         </div>
+
+        {/* MAIN SHOWCASE CARD DEPENDING ON ACTIVE BRANCH */}
+        <AnimatePresence mode="wait">
+          {activeBranch === 'rja1' ? (
+            <motion.div
+              key="rja1-card"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 group"
+            >
+              {/* Left: Main Pink House Building Photo */}
+              <div 
+                onClick={() => setShowCatalogModal(true)}
+                className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] bg-gray-900 overflow-hidden cursor-pointer"
+              >
+                <img
+                  src="/rja1.png"
+                  alt="Homestay RJA 1 Malang Pink House"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                
+                <div className="absolute top-4 right-4 bg-luxury-gold text-black font-display font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-pulse">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Klik Untuk Lihat Katalog RJA 1</span>
+                </div>
+
+                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1 text-left">
+                  <span className="bg-[#f59e0b] text-gray-950 font-display font-extrabold text-[10px] uppercase px-3 py-1 rounded-md tracking-wider shadow-md">
+                    Gedung Utama RJA 1
+                  </span>
+                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl drop-shadow-md">
+                    RJA 1 Homestay Malang
+                  </h3>
+                  <p className="font-sans text-xs text-gray-200 flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4 text-[#f59e0b] shrink-0" />
+                    <span>Jl. Jaksa Agung Suprapto, Klojen, Kota Malang (Pusat Kota)</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Right: Info & Pop-Up Trigger CTA Button */}
+              <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#d97706]">
+                        LOKASI PUSAT KOTA MALANG
+                      </span>
+                      <h4 className="font-display font-extrabold text-xl text-gray-900">
+                        Penginapan RJA 1 - Jaksa Agung Suprapto
+                      </h4>
+                    </div>
+                  </div>
+
+                  <p className="font-sans text-gray-600 text-xs sm:text-sm leading-relaxed">
+                    Gedung homestay 2 lantai berwarna khas pink yang bersih, aman, dan berlokasi sangat strategis di pusat Kota Malang. Tersedia 11 pilihan tipe kamar lengkap (Sweet Room, Green Room, Room Tiga, Family Room, dll).
+                  </p>
+
+                  {/* Amenities Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                      <span>Wi-Fi Cepat Gratis 24 Jam</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                      <span>Area Parkir Luas & Aman</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                      <span>Full AC / Kipas & Smart TV</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                      <span>Kamar Mandi Dalam / Luar</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* MAIN CTA BUTTON: TRIGGER POP-UP MODAL RJA 1 */}
+                <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <div>
+                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
+                      PILIHAN KAMAR LENGKAP
+                    </span>
+                    <span className="font-display font-bold text-xs text-[#d97706]">
+                      11 Tipe Kamar RJA 1
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={() => setShowCatalogModal(true)}
+                    className="bg-[#d97706] hover:bg-[#b45309] text-white font-display font-extrabold text-xs py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                  >
+                    <Maximize2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                    <span>Lihat Katalog Kamar & Harga RJA 1</span>
+                  </button>
+                </div>
+
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="rja2-card"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 group"
+            >
+              {/* Left: RJA 2 Tawangmangu Building Image */}
+              <div 
+                onClick={() => setShowCatalogModal(true)}
+                className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] bg-gray-900 overflow-hidden cursor-pointer"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1200"
+                  alt="Homestay RJA 2 Tawangmangu Malang"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                
+                <div className="absolute top-4 right-4 bg-luxury-gold text-black font-display font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-pulse">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Klik Untuk Lihat Katalog RJA 2</span>
+                </div>
+
+                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1 text-left">
+                  <span className="bg-[#f59e0b] text-gray-950 font-display font-extrabold text-[10px] uppercase px-3 py-1 rounded-md tracking-wider shadow-md">
+                    Gedung Utama RJA 2
+                  </span>
+                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl drop-shadow-md">
+                    RJA 2 Tawangmangu Malang
+                  </h3>
+                  <p className="font-sans text-xs text-gray-200 flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4 text-[#f59e0b] shrink-0" />
+                    <span>Jl. Tawangmangu, Lowokwaru, Kota Malang</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Right: Info RJA 2 & Pop-Up Trigger CTA Button */}
+              <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#d97706]">
+                        HOMESTAY PASTEL & COZY
+                      </span>
+                      <h4 className="font-display font-extrabold text-xl text-gray-900">
+                        Penginapan RJA 2 - Tawangmangu Malang
+                      </h4>
+                    </div>
+                  </div>
+
+                  <p className="font-sans text-gray-600 text-xs sm:text-sm leading-relaxed">
+                    Penginapan homestay bernuansa pastel modern yang estetik di kawasan Tawangmangu Malang. Lingkungan tenang, bersih, dilengkapi fasilitas Water Heater, Full AC, dan Smart TV.
+                  </p>
+
+                  {/* Check-in / Check-out badges */}
+                  <div className="bg-amber-50/60 p-3 rounded-2xl border border-amber-200/60 flex items-center justify-around text-xs font-semibold text-gray-800">
+                    <div className="flex items-center gap-1.5 text-[#d97706]">
+                      <Clock className="w-4 h-4" />
+                      <span>Check-in: <b>Mulai 13.00 WIB</b></span>
+                    </div>
+                    <div className="h-4 w-px bg-amber-200" />
+                    <div className="flex items-center gap-1.5 text-gray-700">
+                      <Clock className="w-4 h-4" />
+                      <span>Check-out: <b>Maks 11.00 WIB</b></span>
+                    </div>
+                  </div>
+
+                  {/* Amenities Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                      <span>Water Heater (Air Panas)</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                      <span>Full AC & Smart TV</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                      <span>Wi-Fi Cepat 24 Jam</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                      <span>Parkir Mobil & Motor</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* MAIN CTA BUTTON: TRIGGER POP-UP MODAL RJA 2 */}
+                <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <div>
+                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
+                      PILIHAN KAMAR LENGKAP
+                    </span>
+                    <span className="font-display font-bold text-xs text-[#d97706]">
+                      8 Tipe Kamar RJA 2
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={() => setShowCatalogModal(true)}
+                    className="bg-[#d97706] hover:bg-[#b45309] text-white font-display font-extrabold text-xs py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                  >
+                    <Maximize2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                    <span>Lihat Katalog Kamar & Harga RJA 2</span>
+                  </button>
+                </div>
+
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
 
-      {/* POP-UP MODAL CATALOG FOR RJA 1 HOMESTAY */}
+      {/* DYNAMIC POP-UP MODAL CATALOG FOR ACTIVE BRANCH (RJA 1 OR RJA 2) */}
       <AnimatePresence>
         {showCatalogModal && (
           <div 
@@ -464,9 +754,9 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                   <div className="w-10 h-10 rounded-xl bg-luxury-gold text-black font-display font-bold flex items-center justify-center shrink-0">
                     <Home className="w-5 h-5" />
                   </div>
-                  <div>
+                  <div className="text-left">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-luxury-gold block">
-                      KATALOG HOMESTAY RJA 1 MALANG
+                      KATALOG HOMESTAY {activeBranch === 'rja1' ? 'RJA 1 MALANG' : 'RJA 2 TAWANGMANGU'}
                     </span>
                     <h3 className="font-display font-extrabold text-lg sm:text-xl text-white">
                       Daftar Tipe Kamar & Rincian Harga
@@ -487,21 +777,23 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                 </button>
               </div>
 
-              {/* Modal Body - Scrollable List of 11 Room Types */}
-              <div className="p-4 sm:p-6 overflow-y-auto space-y-4 bg-gray-50/50 flex-grow">
+              {/* Modal Body - Scrollable List of Room Types */}
+              <div className="p-4 sm:p-6 overflow-y-auto space-y-4 bg-gray-50/50 flex-grow text-left">
                 
                 <div className="bg-amber-50/80 p-3.5 rounded-2xl border border-amber-200/60 text-center space-y-1 mb-2">
                   <p className="font-display font-bold text-xs text-gray-900 uppercase">
                     Klik Tipe Kamar Di Bawah Untuk Melihat Rincian Harga per Pax & Fasilitas
                   </p>
                   <p className="text-[11px] text-gray-600 font-sans">
-                    Jl. Jaksa Agung Suprapto, Klojen, Kota Malang (Pusat Kota)
+                    {activeBranch === 'rja1' 
+                      ? 'Jl. Jaksa Agung Suprapto, Klojen, Kota Malang (Pusat Kota)'
+                      : 'Jl. Tawangmangu, Lowokwaru, Kota Malang (Check-in 13.00 WIB | Check-out 11.00 WIB)'}
                   </p>
                 </div>
 
                 {/* ACCORDION ROOM LIST INSIDE POP-UP MODAL */}
                 <div className="space-y-3">
-                  {rja1Rooms.map((room) => {
+                  {currentRooms.map((room) => {
                     const isExpanded = expandedRoomId === room.id;
 
                     return (
@@ -593,7 +885,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                                 <div className="md:col-span-5 flex flex-col justify-between space-y-3">
                                   <div className="space-y-1.5">
                                     <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
-                                      Fasilitas Kamar:
+                                      Fasilitas Kamar Included:
                                     </span>
                                     <div className="space-y-1">
                                       {room.facilities.map((fac, fIdx) => (
@@ -629,7 +921,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
               {/* Modal Footer */}
               <div className="bg-white p-4 border-t border-gray-100 flex items-center justify-between gap-4 shrink-0">
                 <span className="text-xs font-semibold text-gray-500">
-                  ©2026 Yoga Transport Malang - Official RJA 1 Catalog
+                  ©2026 Yoga Transport Malang - Official RJA Catalog
                 </span>
                 <button
                   type="button"
