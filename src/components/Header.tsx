@@ -37,7 +37,7 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
     { label: lang === 'EN' ? 'About Us' : 'Tentang Kami', id: 'about', type: 'section', sectionId: 'about' },
     { label: lang === 'EN' ? 'Tours' : 'Paket Wisata', id: 'tours', type: 'page', pageId: 'tours' },
     { label: lang === 'EN' ? 'Rentals' : 'Pilihan Mobil', id: 'rentals', type: 'page', pageId: 'rentals' },
-    { label: lang === 'EN' ? 'Clients' : 'Ulasan', id: 'testimonials', type: 'section', sectionId: 'testimonials' },
+    { label: lang === 'EN' ? 'Lodging' : 'Penginapan', id: 'penginapan', type: 'section', sectionId: 'penginapan' },
     { label: t.nav_contact, id: 'contact', type: 'section', sectionId: 'contact' },
   ];
 

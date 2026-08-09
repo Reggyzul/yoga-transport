@@ -11,7 +11,7 @@ import ToursList from './components/ToursList';
 import ExtraServices from './components/ExtraServices';
 import CarList from './components/CarList';
 import BookingSteps from './components/BookingSteps';
-import Testimonials from './components/Testimonials';
+import HomestaySection from './components/HomestaySection';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import { Car } from './types';
@@ -41,7 +41,7 @@ export default function App() {
 
       // Track active section on home page
       if (currentPage === 'home') {
-        const sections = ['home', 'about', 'cars', 'tours', 'extra-services', 'steps', 'contact'];
+        const sections = ['home', 'about', 'cars', 'tours', 'extra-services', 'steps', 'penginapan', 'contact'];
         const scrollPosition = window.scrollY + 250; // Offset
 
         for (const section of sections) {
@@ -128,10 +128,10 @@ export default function App() {
             {/* 1. Hero Section */}
             <Hero onRentClick={() => handleNavClick('rentals')} lang={lang} />
 
-            {/* 2. Section: Tentang Kami Yoga Transport (Directly below Home section) */}
+            {/* 2. Section: Tentang Kami Yoga Transport */}
             <About lang={lang} />
 
-            {/* 3. Section: Pilihan Mobil / Armada (Limited to 3 items with Selengkapnya) */}
+            {/* 3. Section: Pilihan Mobil / Armada */}
             <CarList 
               onSelectCar={handleSelectCar} 
               lang={lang} 
@@ -142,14 +142,14 @@ export default function App() {
             {/* 4. Section: Paket Wisata Terbaik Kami */}
             <ToursList lang={lang} />
 
-            {/* 5. Section: Layanan Tambahan (Drop Bandara, Gathering, Dinas, Dokumentasi) */}
+            {/* 5. Section: Layanan Tambahan */}
             <ExtraServices lang={lang} />
 
             {/* 6. Section: Cara Pemesanan Mudah */}
             <BookingSteps lang={lang} />
 
-            {/* 7. Testimonials */}
-            <Testimonials lang={lang} />
+            {/* 7. Penginapan Homestay Malang (Replacing Ulasan / Testimonials) */}
+            <HomestaySection lang={lang} />
           </>
         ) : currentPage === 'tours' ? (
           <div className="pt-44 sm:pt-48">
@@ -159,16 +159,16 @@ export default function App() {
             {/* Layanan Tambahan */}
             <ExtraServices lang={lang} />
 
-            {/* Testimonials */}
-            <Testimonials lang={lang} />
+            {/* Penginapan Homestay Malang */}
+            <HomestaySection lang={lang} />
           </div>
         ) : (
           <div className="pt-44 sm:pt-48">
             {/* Rentals View */}
             <CarList onSelectCar={handleSelectCar} lang={lang} />
             
-            {/* Testimonials */}
-            <Testimonials lang={lang} />
+            {/* Penginapan Homestay Malang */}
+            <HomestaySection lang={lang} />
           </div>
         )}
 
