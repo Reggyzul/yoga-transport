@@ -1,22 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe, ChevronDown, MapPin, Phone, Clock, Instagram } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 import { TRANSLATIONS } from '../utils/translations';
+import { motion, AnimatePresence } from 'motion/react';
+import { 
+  Globe, 
+  ChevronDown, 
+  Menu, 
+  X, 
+  Compass, 
+  Car, 
+  Home,
+  Briefcase
+} from 'lucide-react';
 
 interface HeaderProps {
-  activeSection: string;
   onNavClick: (sectionId: string) => void;
   lang: 'ID' | 'EN';
   setLang: (lang: 'ID' | 'EN') => void;
   currentPage: 'home' | 'tours' | 'rentals';
   setCurrentPage: (page: 'home' | 'tours' | 'rentals') => void;
+  activeSection: string;
   onBookingClick: () => void;
 }
 
-export default function Header({ activeSection, onNavClick, lang, setLang, currentPage, setCurrentPage, onBookingClick }: HeaderProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Header({
+  onNavClick,
+  lang,
+  setLang,
+  currentPage,
+  setCurrentPage,
+  activeSection,
+  onBookingClick
+}: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [showLangDropdown, setShowLangDropdown] = useState(false);
+  const [showLayananDropdown, setShowLayananDropdown] = useState(false);
+  const [mobileLayananOpen, setMobileLayananOpen] = useState(false);
 
   const t = TRANSLATIONS[lang];
 
@@ -32,27 +51,47 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { label: t.nav_home, id: 'home', type: 'page', pageId: 'home' },
-    { label: lang === 'EN' ? 'About Us' : 'Tentang Kami', id: 'about', type: 'section', sectionId: 'about' },
-    { label: lang === 'EN' ? 'Tours' : 'Paket Wisata', id: 'tours', type: 'page', pageId: 'tours' },
-    { label: lang === 'EN' ? 'Rentals' : 'Pilihan Mobil', id: 'rentals', type: 'page', pageId: 'rentals' },
-    { label: lang === 'EN' ? 'Lodging' : 'Penginapan', id: 'penginapan', type: 'section', sectionId: 'penginapan' },
-    { label: t.nav_contact, id: 'contact', type: 'section', sectionId: 'contact' },
+  const handlePageClick = (pageId: 'home' | 'tours' | 'rentals') => {
+    setCurrentPage(pageId);
+    onNavClick(pageId);
+    setIsOpen(false);
+    setShowLayananDropdown(false);
+  };
+
+  const handleSectionClick = (sectionId: string) => {
+    setCurrentPage('home');
+    setTimeout(() => {
+      onNavClick(sectionId);
+    }, 100);
+    setIsOpen(false);
+    setShowLayananDropdown(false);
+  };
+
+  const servicesList = [
+    {
+      id: 'tours',
+      label: lang === 'EN' ? 'Tour Packages' : 'Paket Wisata',
+      desc: lang === 'EN' ? 'Bromo, Malang & Batu Trips' : 'Trip Bromo, Malang & Batu',
+      icon: Compass,
+      action: () => handlePageClick('tours')
+    },
+    {
+      id: 'rentals',
+      label: lang === 'EN' ? 'Car Rental' : 'Pilihan Mobil',
+      desc: lang === 'EN' ? 'City Car, SUV & Bus Charter' : 'City Car, SUV & Sewa Bus',
+      icon: Car,
+      action: () => handlePageClick('rentals')
+    },
+    {
+      id: 'penginapan',
+      label: lang === 'EN' ? 'Homestay Lodging' : 'Penginapan Homestay',
+      desc: lang === 'EN' ? 'RJA 1 & RJA 2 Homestay Malang' : 'RJA 1 & RJA 2 Malang',
+      icon: Home,
+      action: () => handleSectionClick('penginapan')
+    }
   ];
 
-  const handleItemClick = (item: typeof navItems[0]) => {
-    if (item.type === 'page') {
-      setCurrentPage(item.pageId as any);
-      onNavClick(item.pageId);
-    } else {
-      setCurrentPage('home');
-      setTimeout(() => {
-        onNavClick(item.sectionId as any);
-      }, 100);
-    }
-    setIsOpen(false);
-  };
+  const isLayananActive = currentPage === 'tours' || currentPage === 'rentals' || (currentPage === 'home' && activeSection === 'penginapan');
 
   return (
     <header
@@ -72,46 +111,151 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
             
             {/* Logo */}
             <div 
-              onClick={() => handleItemClick({ label: t.nav_home, id: 'home', type: 'page', pageId: 'home' })}
+              onClick={() => handlePageClick('home')}
               className="flex items-center cursor-pointer group py-1"
               id="header-logo"
             >
               <img
                 src="/logo.png"
-                alt="Yoga Transport Transparent Emblem Logo"
+                alt="Yoga Transport Emblem Logo"
                 className="h-10 sm:h-12 w-auto max-h-[48px] object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
             {/* Desktop Nav Items */}
-            <nav className="hidden lg:flex items-center gap-6" id="desktop-nav">
-              {navItems.map((item) => {
-                const isItemActive = 
-                  (item.type === 'page' && currentPage === item.pageId) ||
-                  (item.type === 'section' && activeSection === item.sectionId && currentPage === 'home');
+            <nav className="hidden lg:flex items-center gap-7" id="desktop-nav">
+              {/* Beranda */}
+              <button
+                onClick={() => handlePageClick('home')}
+                className={`font-display text-sm font-semibold transition-colors cursor-pointer relative py-2 ${
+                  currentPage === 'home' && activeSection === 'home'
+                    ? 'text-luxury-gold'
+                    : 'text-gray-600 hover:text-luxury-gold'
+                }`}
+              >
+                {t.nav_home}
+                {currentPage === 'home' && activeSection === 'home' && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-luxury-gold"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </button>
+
+              {/* Tentang Kami */}
+              <button
+                onClick={() => handleSectionClick('about')}
+                className={`font-display text-sm font-semibold transition-colors cursor-pointer relative py-2 ${
+                  currentPage === 'home' && activeSection === 'about'
+                    ? 'text-luxury-gold'
+                    : 'text-gray-600 hover:text-luxury-gold'
+                }`}
+              >
+                {lang === 'EN' ? 'About Us' : 'Tentang Kami'}
+                {currentPage === 'home' && activeSection === 'about' && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-luxury-gold"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </button>
+
+              {/* LAYANAN DROPDOWN MENU (Paket Wisata, Pilihan Mobil, Penginapan) */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setShowLayananDropdown(true)}
+                onMouseLeave={() => setShowLayananDropdown(false)}
+              >
+                <button
+                  onClick={() => setShowLayananDropdown(!showLayananDropdown)}
+                  className={`font-display text-sm font-semibold transition-colors cursor-pointer relative py-2 flex items-center gap-1.5 ${
+                    isLayananActive
+                      ? 'text-luxury-gold'
+                      : 'text-gray-600 hover:text-luxury-gold'
+                  }`}
+                >
+                  <span>{lang === 'EN' ? 'Services' : 'Layanan'}</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showLayananDropdown ? 'rotate-180 text-luxury-gold' : ''}`} />
                   
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleItemClick(item)}
-                    className={`font-display text-sm font-semibold transition-colors cursor-pointer relative py-2 px-1 ${
-                      isItemActive
-                        ? 'text-luxury-gold'
-                        : 'text-gray-600 hover:text-luxury-gold'
-                    }`}
-                    id={`nav-link-${item.id}`}
-                  >
-                    {item.label}
-                    {isItemActive && (
-                      <motion.div
-                        layoutId="activeNavIndicator"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-luxury-gold"
-                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                      />
-                    )}
-                  </button>
-                );
-              })}
+                  {isLayananActive && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-luxury-gold"
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </button>
+
+                {/* Dropdown Menu Floating Box */}
+                <AnimatePresence>
+                  {showLayananDropdown && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 mt-1 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl p-2 border border-gray-100 z-50 overflow-hidden"
+                    >
+                      <div className="text-[10px] font-bold text-gray-400 uppercase px-3 py-1.5 tracking-wider border-b border-gray-100 mb-1">
+                        {lang === 'EN' ? 'Select Service' : 'Pilihan Layanan Kami'}
+                      </div>
+
+                      {servicesList.map((srv) => {
+                        const IconComp = srv.icon;
+                        const isSrvActive = 
+                          (srv.id === 'tours' && currentPage === 'tours') ||
+                          (srv.id === 'rentals' && currentPage === 'rentals') ||
+                          (srv.id === 'penginapan' && currentPage === 'home' && activeSection === 'penginapan');
+
+                        return (
+                          <button
+                            key={srv.id}
+                            onClick={srv.action}
+                            className={`w-full text-left p-2.5 rounded-xl transition-all flex items-center gap-3 cursor-pointer group ${
+                              isSrvActive ? 'bg-amber-50 text-[#d97706]' : 'hover:bg-gray-50 text-gray-700'
+                            }`}
+                          >
+                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                              isSrvActive ? 'bg-[#d97706] text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-amber-100 group-hover:text-[#d97706]'
+                            }`}>
+                              <IconComp className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="font-display font-extrabold text-xs text-gray-900 group-hover:text-[#d97706] transition-colors">
+                                {srv.label}
+                              </div>
+                              <div className="text-[10px] text-gray-500 font-sans">
+                                {srv.desc}
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Kontak & Lokasi */}
+              <button
+                onClick={() => handleSectionClick('contact')}
+                className={`font-display text-sm font-semibold transition-colors cursor-pointer relative py-2 ${
+                  currentPage === 'home' && activeSection === 'contact'
+                    ? 'text-luxury-gold'
+                    : 'text-gray-600 hover:text-luxury-gold'
+                }`}
+              >
+                {t.nav_contact}
+                {currentPage === 'home' && activeSection === 'contact' && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-luxury-gold"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </button>
             </nav>
 
             {/* Right Utilities (Language, solid Blue CTA, Hamburger) */}
@@ -141,7 +285,7 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
                           setLang('ID');
                           setShowLangDropdown(false);
                         }}
-                        className="w-full text-left px-4 py-2 text-xs font-display font-medium text-gray-700 hover:bg-gray-50 flex items-center justify-between"
+                        className="w-full text-left px-4 py-2 text-xs font-display font-medium text-gray-700 hover:bg-gray-50 flex items-center justify-between cursor-pointer"
                       >
                         <span>Indonesia</span>
                         {lang === 'ID' && <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold"></span>}
@@ -151,7 +295,7 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
                           setLang('EN');
                           setShowLangDropdown(false);
                         }}
-                        className="w-full text-left px-4 py-2 text-xs font-display font-medium text-gray-700 hover:bg-gray-50 flex items-center justify-between"
+                        className="w-full text-left px-4 py-2 text-xs font-display font-medium text-gray-700 hover:bg-gray-50 flex items-center justify-between cursor-pointer"
                       >
                         <span>English</span>
                         {lang === 'EN' && <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold"></span>}
@@ -193,26 +337,75 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
             className="lg:hidden bg-white border-t border-gray-100 shadow-inner overflow-hidden"
             id="mobile-drawer"
           >
-            <div className="px-4 pt-2 pb-6 space-y-1">
-              {navItems.map((item) => {
-                const isItemActive = 
-                  (item.type === 'page' && currentPage === item.pageId) ||
-                  (item.type === 'section' && activeSection === item.sectionId && currentPage === 'home');
-                  
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleItemClick(item)}
-                    className={`block w-full text-left px-4 py-3 font-display text-sm font-semibold rounded-lg transition-colors cursor-pointer ${
-                      isItemActive
-                        ? 'bg-gold-50 text-luxury-gold border-l-4 border-luxury-gold pl-3'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-luxury-gold'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
+            <div className="px-4 pt-3 pb-6 space-y-1 text-left">
+              {/* Mobile Beranda */}
+              <button
+                onClick={() => handlePageClick('home')}
+                className={`block w-full text-left px-4 py-2.5 font-display text-sm font-semibold rounded-lg transition-colors cursor-pointer ${
+                  currentPage === 'home' && activeSection === 'home'
+                    ? 'bg-amber-50 text-luxury-gold border-l-4 border-luxury-gold pl-3'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                {t.nav_home}
+              </button>
+
+              {/* Mobile Tentang Kami */}
+              <button
+                onClick={() => handleSectionClick('about')}
+                className={`block w-full text-left px-4 py-2.5 font-display text-sm font-semibold rounded-lg transition-colors cursor-pointer ${
+                  currentPage === 'home' && activeSection === 'about'
+                    ? 'bg-amber-50 text-luxury-gold border-l-4 border-luxury-gold pl-3'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                {lang === 'EN' ? 'About Us' : 'Tentang Kami'}
+              </button>
+
+              {/* Mobile Layanan (Collapsible Dropdown Group) */}
+              <div className="space-y-1">
+                <button
+                  onClick={() => setMobileLayananOpen(!mobileLayananOpen)}
+                  className={`w-full text-left px-4 py-2.5 font-display text-sm font-semibold rounded-lg transition-colors cursor-pointer flex items-center justify-between ${
+                    isLayananActive
+                      ? 'bg-amber-50 text-luxury-gold'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  <span>{lang === 'EN' ? 'Services' : 'Layanan'}</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileLayananOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {mobileLayananOpen && (
+                  <div className="pl-4 space-y-1 border-l-2 border-amber-200 ml-4 py-1">
+                    {servicesList.map((srv) => {
+                      const IconComp = srv.icon;
+                      return (
+                        <button
+                          key={srv.id}
+                          onClick={srv.action}
+                          className="w-full text-left px-3 py-2 text-xs font-display font-semibold text-gray-700 hover:text-luxury-gold flex items-center gap-2.5 cursor-pointer rounded-lg hover:bg-amber-50/50"
+                        >
+                          <IconComp className="w-4 h-4 text-[#d97706]" />
+                          <span>{srv.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Kontak & Lokasi */}
+              <button
+                onClick={() => handleSectionClick('contact')}
+                className={`block w-full text-left px-4 py-2.5 font-display text-sm font-semibold rounded-lg transition-colors cursor-pointer ${
+                  currentPage === 'home' && activeSection === 'contact'
+                    ? 'bg-amber-50 text-luxury-gold border-l-4 border-luxury-gold pl-3'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                {t.nav_contact}
+              </button>
               
               {/* Mobile Booking Button */}
               <div className="pt-4">
