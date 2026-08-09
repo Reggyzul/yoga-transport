@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import ToursList from './components/ToursList';
+import ExtraServices from './components/ExtraServices';
 import CarList from './components/CarList';
 import BookingSteps from './components/BookingSteps';
 import Testimonials from './components/Testimonials';
@@ -40,7 +41,7 @@ export default function App() {
 
       // Track active section on home page
       if (currentPage === 'home') {
-        const sections = ['home', 'about', 'cars', 'tours', 'steps', 'contact'];
+        const sections = ['home', 'about', 'cars', 'tours', 'extra-services', 'steps', 'contact'];
         const scrollPosition = window.scrollY + 250; // Offset
 
         for (const section of sections) {
@@ -141,10 +142,13 @@ export default function App() {
             {/* 4. Section: Paket Wisata Terbaik Kami */}
             <ToursList lang={lang} />
 
-            {/* 5. Section: Cara Pemesanan Mudah */}
+            {/* 5. Section: Layanan Tambahan (Drop Bandara, Gathering, Dinas, Dokumentasi) */}
+            <ExtraServices lang={lang} />
+
+            {/* 6. Section: Cara Pemesanan Mudah */}
             <BookingSteps lang={lang} />
 
-            {/* 6. Testimonials */}
+            {/* 7. Testimonials */}
             <Testimonials lang={lang} />
           </>
         ) : currentPage === 'tours' ? (
@@ -152,6 +156,9 @@ export default function App() {
             {/* Tours View */}
             <ToursList lang={lang} />
             
+            {/* Layanan Tambahan */}
+            <ExtraServices lang={lang} />
+
             {/* Testimonials */}
             <Testimonials lang={lang} />
           </div>
