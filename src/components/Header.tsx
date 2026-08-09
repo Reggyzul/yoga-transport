@@ -112,7 +112,7 @@ export default function Header({
             {/* Logo */}
             <div 
               onClick={() => handlePageClick('home')}
-              className="flex items-center cursor-pointer group py-1"
+              className="flex items-center cursor-pointer group py-1 gap-2.5 sm:gap-3"
               id="header-logo"
             >
               <img
@@ -120,6 +120,14 @@ export default function Header({
                 alt="Yoga Transport Emblem Logo"
                 className="h-10 sm:h-12 w-auto max-h-[48px] object-contain transition-transform duration-500 group-hover:scale-105"
               />
+              <div className="flex flex-col text-left">
+                <span className="font-display font-extrabold text-base sm:text-lg text-gray-900 leading-none tracking-tight group-hover:text-[#d97706] transition-colors">
+                  YOGA TRANSPORT
+                </span>
+                <span className="text-[9px] sm:text-[10px] font-bold text-[#d97706] uppercase tracking-widest mt-0.5">
+                  Malang Tour & Travel
+                </span>
+              </div>
             </div>
 
             {/* Desktop Nav Items */}
