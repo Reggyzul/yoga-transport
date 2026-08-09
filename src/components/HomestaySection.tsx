@@ -4,7 +4,6 @@ import {
   Home, 
   MapPin, 
   Wifi, 
-  Sparkles, 
   Bed, 
   Tv, 
   CheckCircle2, 
@@ -13,7 +12,11 @@ import {
   ShieldCheck,
   Building,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  X,
+  Sparkles,
+  ArrowRight,
+  Maximize2
 } from 'lucide-react';
 import { TRANSLATIONS } from '../utils/translations';
 
@@ -36,7 +39,7 @@ export interface RoomType {
 
 export default function HomestaySection({ lang }: HomestaySectionProps) {
   const t = TRANSLATIONS[lang];
-  const [activeBranch, setActiveBranch] = useState<'rja1' | 'rja2'>('rja1');
+  const [showCatalogModal, setShowCatalogModal] = useState<boolean>(false);
   const [expandedRoomId, setExpandedRoomId] = useState<string | null>('sweet-room');
 
   const rja1Rooms: RoomType[] = [
@@ -326,18 +329,26 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
           </p>
         </div>
 
-        {/* SINGLE MAIN HOMESTAY BUILDING SHOWCASE CARD (FOTO RUMAH PINK) */}
-        <div className="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden mb-12 grid grid-cols-1 lg:grid-cols-12">
+        {/* MAIN SHOWCASE CARD FOR HOMESTAY RJA 1 (SINGLE PINK HOUSE IMAGE) */}
+        <div className="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 group">
           
-          {/* Left: Single Main Pink House Building Image */}
-          <div className="lg:col-span-6 relative min-h-[280px] sm:min-h-[360px] bg-gray-900 overflow-hidden">
+          {/* Left: Main Pink House Building Photo */}
+          <div 
+            onClick={() => setShowCatalogModal(true)}
+            className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] bg-gray-900 overflow-hidden cursor-pointer"
+          >
             <img
               src="/rja1.png"
               alt="Homestay RJA 1 Malang Pink House"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             
+            <div className="absolute top-4 right-4 bg-luxury-gold text-black font-display font-extrabold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-pulse">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Klik Untuk Katalog (Pop-Up)</span>
+            </div>
+
             <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
               <span className="bg-[#f59e0b] text-gray-950 font-display font-extrabold text-[10px] uppercase px-3 py-1 rounded-md tracking-wider shadow-md">
                 Gedung Utama RJA 1
@@ -352,8 +363,8 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
             </div>
           </div>
 
-          {/* Right: Building Info Summary & Quick Highlights */}
-          <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+          {/* Right: Info & Pop-Up Trigger CTA Button */}
+          <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left">
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b border-gray-100 pb-3">
                 <div>
@@ -367,10 +378,10 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
               </div>
 
               <p className="font-sans text-gray-600 text-xs sm:text-sm leading-relaxed">
-                Gedung homestay 2 lantai berwarna khas pink yang bersih, aman, dan berlokasi strategis di pusat kota Malang. Tersedia 11 pilihan tipe kamar sesuai jumlah rombongan Anda.
+                Gedung homestay 2 lantai berwarna khas pink yang bersih, aman, dan berlokasi sangat strategis di pusat Kota Malang. Tersedia 11 pilihan tipe kamar lengkap (Sweet Room, Green Room, Room Tiga, Family Room, dll).
               </p>
 
-              {/* General Amenities Checklist */}
+              {/* Amenities Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
                 <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
                   <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
@@ -382,7 +393,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
                   <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
-                  <span>Pilihan AC & Smart TV</span>
+                  <span>Full AC / Kipas & Smart TV</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/80">
                   <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
@@ -391,175 +402,228 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
               </div>
             </div>
 
-            {/* Quick WhatsApp Action */}
-            <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-4">
+            {/* MAIN CTA BUTTON: TRIGGER POP-UP MODAL */}
+            <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
               <div>
                 <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
-                  INFO / RESERVASI
+                  PILIHAN KAMAR LENGKAP
                 </span>
-                <span className="font-display font-bold text-xs text-gray-900">
-                  Pusat Kota Malang
+                <span className="font-display font-bold text-xs text-[#d97706]">
+                  11 Tipe Kamar RJA 1
                 </span>
               </div>
 
               <button
-                onClick={() => handleWhatsApp('Halo Yoga Transport, saya ingin tanya ketersediaan penginapan RJA 1 Malang.')}
-                className="bg-[#25D366] hover:bg-[#20ba5a] text-white font-display font-bold text-xs py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                onClick={() => setShowCatalogModal(true)}
+                className="bg-[#d97706] hover:bg-[#b45309] text-white font-display font-extrabold text-xs py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
               >
-                <MessageSquare className="w-4 h-4 fill-current" />
-                <span>Konsultasi via WA</span>
+                <Maximize2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <span>Lihat Katalog Kamar & Harga (Pop-Up)</span>
               </button>
             </div>
-          </div>
 
-        </div>
-
-        {/* SECTION TITLE: DAFTAR BANYAK PILIHAN KAMAR RJA 1 */}
-        <div className="space-y-6">
-          
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-gray-200 pb-4">
-            <div>
-              <span className="text-xs font-bold uppercase text-[#d97706] tracking-wider block">
-                KATALOG LENGKAP RJA 1
-              </span>
-              <h3 className="font-display font-extrabold text-2xl text-gray-900">
-                Pilih Tipe Kamar (Klik Untuk Rincian Harga & Fasilitas):
-              </h3>
-            </div>
-            <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-              Total 11 Tipe Kamar
-            </span>
-          </div>
-
-          {/* ROOM ACCORDIONS GRID / LIST */}
-          <div className="space-y-4">
-            {rja1Rooms.map((room) => {
-              const isExpanded = expandedRoomId === room.id;
-
-              return (
-                <div
-                  key={room.id}
-                  className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden shadow-xs ${
-                    isExpanded
-                      ? 'border-[#d97706] ring-2 ring-amber-400/30 shadow-md'
-                      : 'border-gray-200/80 hover:border-amber-300'
-                  }`}
-                >
-                  
-                  {/* Clickable Header Button Row */}
-                  <div
-                    onClick={() => toggleRoomExpand(room.id)}
-                    className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-amber-50/30 transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-display font-bold text-sm shrink-0 transition-colors ${
-                        isExpanded ? 'bg-[#d97706] text-white' : 'bg-amber-100 text-[#d97706]'
-                      }`}>
-                        <Bed className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h4 className="font-display font-extrabold text-lg text-gray-900">
-                            {room.name}
-                          </h4>
-                          <span className="text-[10px] bg-amber-100/80 text-[#d97706] px-2.5 py-0.5 rounded-full font-bold uppercase">
-                            {room.badge}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-500 font-sans mt-0.5">
-                          {room.capacity} • {room.bathroom} • {room.tv}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between sm:justify-end gap-3 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-100">
-                      <span className="font-display font-bold text-xs sm:text-sm text-[#d97706]">
-                        Rincian Harga & Pax
-                      </span>
-                      <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
-                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Expanded Room Specifications & Pricing Drawer */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="border-t border-gray-100 bg-amber-50/20 p-5 sm:p-6"
-                      >
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                          
-                          {/* Price Breakdown Matrix Table */}
-                          <div className="md:col-span-7 space-y-2">
-                            <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
-                              Rincian Harga per Jumlah Orang (Pax):
-                            </span>
-                            <div className="bg-white rounded-xl p-3.5 border border-amber-200/60 shadow-xs space-y-2">
-                              {room.pricing.map((pItem, idx) => (
-                                <div key={idx} className="flex items-center justify-between text-xs py-1.5 border-b border-gray-100 last:border-0">
-                                  <span className="font-bold text-gray-700 flex items-center gap-1.5">
-                                    <Users className="w-3.5 h-3.5 text-[#d97706]" />
-                                    {pItem.pax}
-                                  </span>
-                                  <div className="text-right">
-                                    <span className="font-display font-bold text-[#d97706] text-sm">
-                                      {pItem.rate}
-                                    </span>
-                                    {pItem.totalNote && (
-                                      <span className="block text-[10px] text-gray-500 font-normal">
-                                        ({pItem.totalNote})
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Room Specs & Facilities Checklist */}
-                          <div className="md:col-span-5 flex flex-col justify-between space-y-4">
-                            <div className="space-y-2">
-                              <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
-                                Fasilitas Kamar:
-                              </span>
-                              <div className="space-y-1.5">
-                                {room.facilities.map((fac, fIdx) => (
-                                  <div key={fIdx} className="flex items-center gap-1.5 text-xs text-gray-700">
-                                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                                    <span>{fac}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Booking Action Button */}
-                            <button
-                              onClick={() => handleWhatsApp(room.waMessage)}
-                              className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-display font-bold text-xs py-3 px-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer mt-2"
-                            >
-                              <MessageSquare className="w-4 h-4 fill-current" />
-                              <span>Booking {room.name} via WA</span>
-                            </button>
-                          </div>
-
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                </div>
-              );
-            })}
           </div>
 
         </div>
 
       </div>
+
+      {/* POP-UP MODAL CATALOG FOR RJA 1 HOMESTAY */}
+      <AnimatePresence>
+        {showCatalogModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/70 backdrop-blur-md">
+            
+            {/* Modal Box Container */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-3xl shadow-2xl border border-gray-100 max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden relative"
+            >
+              
+              {/* Modal Header */}
+              <div className="bg-luxury-black text-white p-5 sm:p-6 flex items-center justify-between border-b border-white/10 shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-luxury-gold text-black font-display font-bold flex items-center justify-center shrink-0">
+                    <Home className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-luxury-gold block">
+                      KATALOG HOMESTAY RJA 1 MALANG
+                    </span>
+                    <h3 className="font-display font-extrabold text-lg sm:text-xl text-white">
+                      Daftar Tipe Kamar & Rincian Harga
+                    </h3>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setShowCatalogModal(false)}
+                  className="text-gray-400 hover:text-white bg-white/10 p-2 rounded-full transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Body - Scrollable List of 11 Room Types */}
+              <div className="p-4 sm:p-6 overflow-y-auto space-y-4 bg-gray-50/50 flex-grow">
+                
+                <div className="bg-amber-50/80 p-3.5 rounded-2xl border border-amber-200/60 text-center space-y-1 mb-2">
+                  <p className="font-display font-bold text-xs text-gray-900 uppercase">
+                    Klik Tipe Kamar Di Bawah Untuk Melihat Rincian Harga per Pax & Fasilitas
+                  </p>
+                  <p className="text-[11px] text-gray-600 font-sans">
+                    Jl. Jaksa Agung Suprapto, Klojen, Kota Malang (Pusat Kota)
+                  </p>
+                </div>
+
+                {/* ACCORDION ROOM LIST INSIDE POP-UP MODAL */}
+                <div className="space-y-3">
+                  {rja1Rooms.map((room) => {
+                    const isExpanded = expandedRoomId === room.id;
+
+                    return (
+                      <div
+                        key={room.id}
+                        className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden shadow-xs ${
+                          isExpanded
+                            ? 'border-[#d97706] ring-2 ring-amber-400/30 shadow-sm'
+                            : 'border-gray-200/80 hover:border-amber-300'
+                        }`}
+                      >
+                        
+                        {/* Room Accordion Header */}
+                        <div
+                          onClick={() => toggleRoomExpand(room.id)}
+                          className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer hover:bg-amber-50/30 transition-colors"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-display font-bold text-xs shrink-0 transition-colors ${
+                              isExpanded ? 'bg-[#d97706] text-white' : 'bg-amber-100 text-[#d97706]'
+                            }`}>
+                              <Bed className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <h4 className="font-display font-extrabold text-base text-gray-900">
+                                  {room.name}
+                                </h4>
+                                <span className="text-[10px] bg-amber-100/80 text-[#d97706] px-2.5 py-0.5 rounded-full font-bold uppercase">
+                                  {room.badge}
+                                </span>
+                              </div>
+                              <p className="text-xs text-gray-500 font-sans mt-0.5">
+                                {room.capacity} • {room.bathroom} • {room.tv}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between sm:justify-end gap-3 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-100">
+                            <span className="font-display font-bold text-xs text-[#d97706]">
+                              Rincian Harga & Pax
+                            </span>
+                            <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                              {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Room Accordion Details */}
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.25 }}
+                              className="border-t border-gray-100 bg-amber-50/20 p-4 sm:p-5"
+                            >
+                              <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
+                                
+                                {/* Pricing Table */}
+                                <div className="md:col-span-7 space-y-2">
+                                  <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
+                                    Rincian Harga per Jumlah Orang (Pax):
+                                  </span>
+                                  <div className="bg-white rounded-xl p-3 border border-amber-200/60 shadow-xs space-y-1.5">
+                                    {room.pricing.map((pItem, idx) => (
+                                      <div key={idx} className="flex items-center justify-between text-xs py-1 border-b border-gray-100 last:border-0">
+                                        <span className="font-bold text-gray-700 flex items-center gap-1.5">
+                                          <Users className="w-3.5 h-3.5 text-[#d97706]" />
+                                          {pItem.pax}
+                                        </span>
+                                        <div className="text-right">
+                                          <span className="font-display font-bold text-[#d97706] text-sm">
+                                            {pItem.rate}
+                                          </span>
+                                          {pItem.totalNote && (
+                                            <span className="block text-[9px] text-gray-500 font-normal">
+                                              ({pItem.totalNote})
+                                            </span>
+                                          )}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+
+                                {/* Room Facilities & WhatsApp Booking */}
+                                <div className="md:col-span-5 flex flex-col justify-between space-y-3">
+                                  <div className="space-y-1.5">
+                                    <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
+                                      Fasilitas Kamar:
+                                    </span>
+                                    <div className="space-y-1">
+                                      {room.facilities.map((fac, fIdx) => (
+                                        <div key={fIdx} className="flex items-center gap-1.5 text-xs text-gray-700">
+                                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                          <span>{fac}</span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+
+                                  <button
+                                    onClick={() => handleWhatsApp(room.waMessage)}
+                                    className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-display font-bold text-xs py-2.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                                  >
+                                    <MessageSquare className="w-4 h-4 fill-current" />
+                                    <span>Booking {room.name} via WA</span>
+                                  </button>
+                                </div>
+
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+
+                      </div>
+                    );
+                  })}
+                </div>
+
+              </div>
+
+              {/* Modal Footer */}
+              <div className="bg-white p-4 border-t border-gray-100 flex items-center justify-between gap-4 shrink-0">
+                <span className="text-xs font-semibold text-gray-500">
+                  ©2026 Yoga Transport Malang - Official RJA 1 Catalog
+                </span>
+                <button
+                  onClick={() => setShowCatalogModal(false)}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-display font-bold text-xs py-2 px-5 rounded-xl transition-colors cursor-pointer"
+                >
+                  Tutup Pop-Up
+                </button>
+              </div>
+
+            </motion.div>
+
+          </div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }
