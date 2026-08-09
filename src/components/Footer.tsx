@@ -1,6 +1,7 @@
 import React from 'react';
 import { Headset, Phone, MapPin, Instagram } from 'lucide-react';
 import { TRANSLATIONS } from '../utils/translations';
+import { openWhatsApp } from '../utils/whatsapp';
 
 interface FooterProps {
   onNavClick: (sectionId: string) => void;
@@ -113,14 +114,12 @@ export default function Footer({ onNavClick, lang }: FooterProps) {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase font-bold text-gray-500">WhatsApp Fast Response</p>
-                  <a 
-                    href="https://api.whatsapp.com/send?phone=628813305066"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm font-display font-bold text-white hover:text-luxury-gold mt-0.5 block"
+                  <button 
+                    onClick={() => openWhatsApp()}
+                    className="text-sm font-display font-bold text-white hover:text-luxury-gold mt-0.5 block cursor-pointer text-left"
                   >
                     08813305066
-                  </a>
+                  </button>
                 </div>
               </div>
 

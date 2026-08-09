@@ -20,6 +20,8 @@ import { ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TRANSLATIONS } from './utils/translations';
 
+import { openWhatsApp } from './utils/whatsapp';
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'tours' | 'rentals' | 'gallery'>('home');
   const [activeSection, setActiveSection] = useState('home');
@@ -94,13 +96,7 @@ export default function App() {
 
   // WhatsApp template for fast-chat floater
   const handleFastWhatsApp = () => {
-    const waNumber = '628813305066';
-    const text = encodeURIComponent(
-      lang === 'EN' 
-        ? 'Hello Yoga Transport, I am interested in booking a service in Malang. Thank you!'
-        : 'Halo Yoga Transport, saya tertarik untuk memesan layanan perjalanan/rental di Malang. Terima kasih!'
-    );
-    window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${text}`, '_blank', 'noreferrer');
+    openWhatsApp();
   };
 
   return (

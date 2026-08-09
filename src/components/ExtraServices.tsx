@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Plane, Users, MapPin, Camera, MessageSquare, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { openWhatsApp } from '../utils/whatsapp';
 
 interface ExtraServicesProps {
   lang: 'ID' | 'EN';
@@ -79,8 +80,7 @@ export default function ExtraServices({ lang }: ExtraServicesProps) {
   ];
 
   const handleWhatsApp = (waMessage: string) => {
-    const waNumber = '628813305066';
-    window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(waMessage)}`, '_blank', 'noreferrer');
+    openWhatsApp(waMessage);
   };
 
   return (
