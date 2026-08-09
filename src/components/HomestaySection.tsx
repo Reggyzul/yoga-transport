@@ -251,24 +251,52 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
     },
     {
       id: 'family-room',
-      name: 'Family Room / L-Room',
-      badge: 'Paket Rombongan Besar',
-      capacity: 'Kapasitas 6 - 8+ Orang',
+      name: 'Family Room',
+      badge: 'Kamar Mandi Dalam + AC & Smart TV (Max 6 Orang)',
+      capacity: 'Maksimal 6 Orang',
       pricing: [
-        { pax: 'Rombongan 6-8+ Orang', rate: 'Mulai Rp 35.000 / orang' }
+        { pax: '1 Orang', rate: 'Rp 225.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 112.500 / orang', totalNote: 'Total Rp 225.000' },
+        { pax: '3 Orang', rate: 'Rp 75.000 / orang', totalNote: 'Total Rp 225.000' },
+        { pax: '4 Orang', rate: 'Rp 65.000 / orang', totalNote: 'Total Rp 260.000' },
+        { pax: '5 - 6 Orang', rate: 'Rp 60.000 / orang', totalNote: 'Total Rp 300.000 - Rp 360.000' }
       ],
       facilities: [
-        'Ruangan Luas & Kasur Rombongan',
-        'Kamar Mandi Bersih',
-        'Wi-Fi Cepat Gratis',
-        'Area Kumpul Keluarga / Rombongan',
-        'Full Selimut & Perlengkapan'
+        '2 SET Tempat Tidur Susun (Ukuran 120 x 200 cm)',
+        'Kamar Mandi Dalam Clean & Fresh',
+        'SMART TV & Full AC',
+        'Wi-Fi Cepat Gratis 24 Jam',
+        'Gantungan Baju, Rak, & Selimut'
       ],
-      bedInfo: 'Multiple Beds / Family Layout',
-      bathroom: 'Kamar Mandi Bersih',
-      tv: 'Ada TV',
+      bedInfo: '2 SET Tidur Susun (120x200 cm)',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Smart TV + AC',
       image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=800',
-      waMessage: 'Halo Yoga Transport, saya ingin info booking RJA 1 - Family Room / L-Room.'
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Family Room (Maks 6 orang + Kamar Mandi Dalam, AC, Smart TV).'
+    },
+    {
+      id: 'l-room',
+      name: 'L - Room',
+      badge: 'Kamar Mandi Dalam + AC & Smart TV (Max 4 Orang)',
+      capacity: 'Maksimal 4 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 180.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 90.000 / orang', totalNote: 'Total Rp 180.000' },
+        { pax: '3 Orang', rate: 'Rp 70.000 / orang', totalNote: 'Total Rp 210.000' },
+        { pax: '4 Orang', rate: 'Rp 60.000 / orang', totalNote: 'Total Rp 240.000' }
+      ],
+      facilities: [
+        '2 Set Tempat Tidur (Jumlah kasur 2: 120x200 & 120x200 cm)',
+        'Kamar Mandi Dalam Clean & Fresh',
+        'SMART TV & Full AC',
+        'Wi-Fi Cepat Gratis 24 Jam',
+        'Gantungan Baju & Selimut'
+      ],
+      bedInfo: '2 Kasur Twin (120x200 cm)',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Smart TV + AC',
+      image: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - L-Room (Maks 4 orang + Kamar Mandi Dalam, AC, Smart TV).'
     }
   ];
 
