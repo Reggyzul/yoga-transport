@@ -63,23 +63,23 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
       <div
         className={`w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md py-3 border-b border-slate-100'
-            : 'bg-white py-4 border-b border-slate-100'
+            ? 'bg-white/95 backdrop-blur-md py-2 border-b border-slate-100/80 shadow-sm'
+            : 'bg-white py-2.5 border-b border-slate-100/80 shadow-xs'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-14 sm:h-16">
             
             {/* Logo */}
             <div 
               onClick={() => handleItemClick({ label: t.nav_home, id: 'home', type: 'page', pageId: 'home' })}
-              className="flex items-center cursor-pointer group"
+              className="flex items-center cursor-pointer group py-1"
               id="header-logo"
             >
               <img
                 src="/logo.png"
-                alt="Yoga Transport 8K Realistic Logo"
-                className="h-24 sm:h-28 w-auto max-h-[85px] object-contain transition-transform duration-500 group-hover:scale-105 filter drop-shadow-md"
+                alt="Yoga Transport Transparent Emblem Logo"
+                className="h-10 sm:h-12 w-auto max-h-[48px] object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
