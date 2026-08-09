@@ -698,7 +698,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                 className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] bg-gray-900 overflow-hidden cursor-pointer"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1200"
+                  src="/rja2.png"
                   alt="Homestay RJA 2 Tawangmangu Malang"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
