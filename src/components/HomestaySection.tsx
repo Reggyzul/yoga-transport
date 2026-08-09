@@ -42,6 +42,18 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
   const [showCatalogModal, setShowCatalogModal] = useState<boolean>(false);
   const [expandedRoomId, setExpandedRoomId] = useState<string | null>('sweet-room');
 
+  // Prevent background page scrolling when modal is open
+  React.useEffect(() => {
+    if (showCatalogModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showCatalogModal]);
+
   const rja1Rooms: RoomType[] = [
     {
       id: 'sweet-room',
@@ -344,9 +356,9 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             
-            <div className="absolute top-4 right-4 bg-luxury-gold text-black font-display font-extrabold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-pulse">
+            <div className="absolute top-4 right-4 bg-luxury-gold text-black font-display font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-pulse">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Klik Untuk Katalog (Pop-Up)</span>
+              <span>Klik Untuk Lihat Katalog</span>
             </div>
 
             <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
@@ -418,7 +430,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                 className="bg-[#d97706] hover:bg-[#b45309] text-white font-display font-extrabold text-xs py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
               >
                 <Maximize2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span>Lihat Katalog Kamar & Harga (Pop-Up)</span>
+                <span>Lihat Katalog Kamar & Harga</span>
               </button>
             </div>
 
