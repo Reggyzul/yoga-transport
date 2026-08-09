@@ -597,7 +597,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                 className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] bg-gray-900 overflow-hidden cursor-pointer"
               >
                 <img
-                  src="/rja1.png"
+                  src="/rja1.avif"
                   alt="Homestay RJA 1 Malang Pink House"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -698,7 +698,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                 className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] bg-gray-900 overflow-hidden cursor-pointer"
               >
                 <img
-                  src="/rja2.png"
+                  src="/rja2.avif"
                   alt="Homestay RJA 2 Tawangmangu Malang"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />

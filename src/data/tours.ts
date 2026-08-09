@@ -95,7 +95,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '1 Hari',
     durationEn: '1 Day',
     badge: 'BEST SELLER',
-    image: '/tours_bromo.jpg',
+    image: '/tours_bromo.avif',
     description: 'Rasakan pengalaman magis menyaksikan golden sunrise Bromo dengan armada Jeep 4x4 terbaik.',
     descriptionEn: 'Experience the magic of watching Mount Bromo golden sunrise with premium 4x4 Jeep fleet.',
     highlights: [
@@ -153,7 +153,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '1 Hari',
     durationEn: '1 Day',
     badge: null,
-    image: '/tumpak_sewu.png',
+    image: '/tumpak_sewu.avif',
     description: 'Petualangan menuju "Niagara-nya Indonesia" dengan pemandangan air terjun yang megah.',
     descriptionEn: 'An adventure to the "Niagara of Indonesia" featuring breathtaking canyon waterfalls.',
     highlights: [
@@ -209,7 +209,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '1 Hari',
     durationEn: '1 Day',
     badge: null,
-    image: '/pantai_malang.png',
+    image: '/pantai_malang.avif',
     description: 'Paket wisata pantai selatan Malang menawarkan pengalaman yang lengkap, mulai dari wisata edukasi, petualangan di alam, hingga kuliner khas.',
     descriptionEn: 'Explore the stunning tropical southern coastline of Malang with picturesque cliff views and white beaches.',
     highlights: [
@@ -263,7 +263,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '2 Hari 1 Malam',
     durationEn: '2 Days 1 Night',
     badge: null,
-    image: '/tours_bromo.jpg',
+    image: '/tours_bromo.avif',
     description: 'Paket ini sangat cocok bagi wisatawan luar kota yang memiliki waktu terbatas, seperti liburan akhir pekan.',
     descriptionEn: 'The perfect weekend escape package combining Batu city attractions with midnight Mount Bromo sunrise.',
     highlights: [
@@ -315,7 +315,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '3 Hari 2 Malam',
     durationEn: '3 Days 2 Nights',
     badge: null,
-    image: '/malang_batu.png',
+    image: '/malang_batu.avif',
     description: 'Tanpa perlu repot mengatur itinerary, paket ini sudah mencakup berbagai destinasi populer seperti Jatim Park 2, Jatim Park 3, Museum Angkut, BNS, Wisata Petik Apel, dan Flora Wisata Santerra de Laponte.',
     descriptionEn: 'Hassle-free 3D2N tour featuring top Malang & Batu family destinations including Jatim Park 2 & 3, Museum Angkut, Apple Orchard, and Santerra.',
     highlights: [

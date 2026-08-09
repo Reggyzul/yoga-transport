@@ -37,7 +37,7 @@ export default function GallerySection({ lang }: GallerySectionProps) {
   const galleryData: GalleryItem[] = [
     {
       id: 'galeri-1',
-      image: '/gallery/galeri1.jpg',
+      image: '/gallery/galeri1.avif',
       title: 'Kunjungan Study Trip Orlin Farm',
       titleEn: 'Orlin Farm Educational Study Trip',
       category: 'tour',
@@ -47,7 +47,7 @@ export default function GallerySection({ lang }: GallerySectionProps) {
     },
     {
       id: 'galeri-2',
-      image: '/gallery/galeri2.jpg',
+      image: '/gallery/galeri2.avif',
       title: 'Rombongan Wisata Premium Coach',
       titleEn: 'Touring Group with Premium Coach',
       category: 'bus',
@@ -57,7 +57,7 @@ export default function GallerySection({ lang }: GallerySectionProps) {
     },
     {
       id: 'galeri-3',
-      image: '/gallery/galeri3.jpg',
+      image: '/gallery/galeri3.avif',
       title: 'Snorkeling & Wisata Bahari',
       titleEn: 'Snorkeling & Marine Eco Trip',
       category: 'beach',
@@ -67,7 +67,7 @@ export default function GallerySection({ lang }: GallerySectionProps) {
     },
     {
       id: 'galeri-4',
-      image: '/gallery/galeri4.jpg',
+      image: '/gallery/galeri4.avif',
       title: 'Tour Group Dolan-Dolan Megatrans',
       titleEn: 'Group Tour with Megatrans Bus',
       category: 'bus',
@@ -77,7 +77,7 @@ export default function GallerySection({ lang }: GallerySectionProps) {
     },
     {
       id: 'galeri-5',
-      image: '/gallery/galeri5.jpg',
+      image: '/gallery/galeri5.avif',
       title: 'Spot Foto Wooden View Pantai Malang',
       titleEn: 'Ocean Platform Deck Photoshoot',
       category: 'beach',
@@ -87,7 +87,7 @@ export default function GallerySection({ lang }: GallerySectionProps) {
     },
     {
       id: 'galeri-6',
-      image: '/gallery/galeri6.jpg',
+      image: '/gallery/galeri6.avif',
       title: 'Spot Candi Laut Pantai Balekambang',
       titleEn: 'Balekambang Temple & Ocean Bridge',
       category: 'beach',
@@ -97,7 +97,7 @@ export default function GallerySection({ lang }: GallerySectionProps) {
     },
     {
       id: 'galeri-7',
-      image: '/gallery/galeri7.jpg',
+      image: '/gallery/galeri7.avif',
       title: 'Wisata Edukasi Dino Mall Jatim Park 3',
       titleEn: 'Jatim Park 3 Dino Mall Batu Tour',
       category: 'tour',
