@@ -22,7 +22,7 @@ export default function ExtraServices({ lang }: ExtraServicesProps) {
         lang === 'EN' ? 'Luggage Assistance Included' : 'Bantuan Bagasi & BBM Included',
         lang === 'EN' ? 'Avanza, Innova, & Hiace Fleet' : 'Armada Avanza, Innova, & Hiace'
       ],
-      priceText: lang === 'EN' ? 'Starting From Rp 450.000' : 'Mulai Rp 450.000 / Drop',
+      priceText: lang === 'EN' ? 'Contact Admin' : 'Hubungi Admin Untuk Tarif',
       waMessage: 'Halo Yoga Transport, saya ingin memesan Layanan Shuttle & Drop Bandara. Mohon informasi ketersediaannya.'
     },
     {
@@ -56,7 +56,7 @@ export default function ExtraServices({ lang }: ExtraServicesProps) {
         lang === 'EN' ? 'Sterilized Clean Fleet' : 'Armada Steril & Terawat',
         lang === 'EN' ? 'Flexible Daily Schedule' : 'Jadwal Fleksibel & Bebas Stress'
       ],
-      priceText: lang === 'EN' ? 'Starting From Rp 500.000 / Day' : 'Mulai Rp 500.000 / Hari',
+      priceText: lang === 'EN' ? 'Contact Admin' : 'Hubungi Admin Untuk Tarif',
       waMessage: 'Halo Yoga Transport, saya tertarik menyewa Car Charter / Perjalanan Dinas Luar Kota.'
     },
     {
