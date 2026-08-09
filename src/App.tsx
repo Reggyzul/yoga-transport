@@ -127,8 +127,13 @@ export default function App() {
             {/* 1. Hero Section */}
             <Hero onRentClick={() => handleNavClick('rentals')} lang={lang} />
 
-            {/* 2. Section: Layanan Utama */}
-            <Services lang={lang} />
+            {/* 2. Section: Pilihan Mobil / Armada (Limited to 3 items with Selengkapnya) */}
+            <CarList 
+              onSelectCar={handleSelectCar} 
+              lang={lang} 
+              limit={3} 
+              onViewMore={() => handleNavClick('rentals')}
+            />
 
             {/* 3. Section: Paket Wisata Terbaik Kami */}
             <ToursList lang={lang} />

@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CARS } from '../data/cars';
 import { Car } from '../types';
 import { motion } from 'motion/react';
-import { Calendar, Users, Settings, Fuel, MapPin } from 'lucide-react';
+import { Calendar, Users, Settings, Fuel, MapPin, ChevronDown } from 'lucide-react';
 import { TRANSLATIONS } from '../utils/translations';
 
 interface CarListProps {
   onSelectCar: (car: Car) => void;
   lang: 'ID' | 'EN';
+  limit?: number;
+  onViewMore?: () => void;
 }
 
-export default function CarList({ onSelectCar, lang }: CarListProps) {
+export default function CarList({ onSelectCar, lang, limit, onViewMore }: CarListProps) {
+  const [showAll, setShowAll] = useState(false);
   const t = TRANSLATIONS[lang];
 
   const handleWhatsAppDirect = (carName: string) => {
@@ -19,12 +22,22 @@ export default function CarList({ onSelectCar, lang }: CarListProps) {
     window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(message)}`, '_blank', 'noreferrer');
   };
 
+  const displayedCars = limit && !showAll ? CARS.slice(0, limit) : CARS;
+
+  const handleMoreClick = () => {
+    if (onViewMore) {
+      onViewMore();
+    } else {
+      setShowAll(true);
+    }
+  };
+
   return (
-    <section id="cars" className="py-24 bg-gray-50 overflow-hidden">
+    <section id="cars" className="py-20 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4" id="cars-heading">
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-4" id="cars-heading">
           <span className="font-display font-bold text-sm text-luxury-gold tracking-widest uppercase">
             {t.cars_tag}
           </span>
@@ -41,12 +54,12 @@ export default function CarList({ onSelectCar, lang }: CarListProps) {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           id="cars-grid"
         >
-          {CARS.map((car) => (
+          {displayedCars.map((car, index) => (
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
               key={car.id}
               className="bg-white rounded-[32px] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group overflow-hidden"
               id={`car-card-${car.id}`}
@@ -60,7 +73,7 @@ export default function CarList({ onSelectCar, lang }: CarListProps) {
                   referrerPolicy="no-referrer"
                 />
                 
-                {/* Price overlay badge on Top Right (overlaps the image) */}
+                {/* Price overlay badge on Top Right */}
                 <div className="absolute top-4 right-0 bg-[#2563eb] text-white px-4 py-1.5 rounded-l-full rounded-r-none font-display font-bold text-xs shadow-md">
                   {car.pricePerDay > 0 ? `Mulai Rp ${car.pricePerDay.toLocaleString('id-ID')}` : 'Hubungi Kontak'}
                 </div>
@@ -119,7 +132,7 @@ export default function CarList({ onSelectCar, lang }: CarListProps) {
                   </div>
                 </div>
 
-                {/* Bottom Actions matching BromoCreative style */}
+                {/* Bottom Actions */}
                 <div className="pt-4 mt-auto border-t border-gray-100 flex items-center gap-3">
                   <button
                     onClick={() => onSelectCar(car)}
@@ -146,6 +159,19 @@ export default function CarList({ onSelectCar, lang }: CarListProps) {
             </motion.div>
           ))}
         </div>
+
+        {/* Simple "Selengkapnya" button with down arrow icon */}
+        {limit && CARS.length > limit && !showAll && (
+          <div className="mt-12 text-center flex justify-center">
+            <button
+              onClick={handleMoreClick}
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white border border-gray-200/80 hover:border-[#2563eb] text-gray-700 hover:text-[#2563eb] font-display font-semibold text-sm rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer group"
+            >
+              <span>{lang === 'EN' ? 'See More Fleets' : 'Selengkapnya'}</span>
+              <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-[#2563eb] transition-transform duration-300 group-hover:translate-y-0.5" />
+            </button>
+          </div>
+        )}
 
       </div>
     </section>
