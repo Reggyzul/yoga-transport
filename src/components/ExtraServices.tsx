@@ -184,28 +184,6 @@ export default function ExtraServices({ lang }: ExtraServicesProps) {
           ))}
         </div>
 
-        {/* Bottom Fast Contact Banner */}
-        <div className="mt-14 bg-luxury-charcoal text-white rounded-3xl p-8 sm:p-10 shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left z-10">
-            <span className="font-display font-bold text-xs text-[#f59e0b] uppercase tracking-widest">
-              {lang === 'EN' ? 'NEED A CUSTOM REQUEST?' : 'BUTUH LAYANAN KHUSUS ATAU KUSTOM?'}
-            </span>
-            <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white">
-              {lang === 'EN' ? 'Contact Our 24/7 Transport Consultant' : 'Konsultasikan Kebutuhan Perjalanan Anda Bersama Tim Kami'}
-            </h3>
-            <p className="font-sans text-gray-300 text-xs sm:text-sm max-w-xl">
-              {lang === 'EN'
-                ? 'Free consultation for large group travel, VIP transfers, bus charters, and customized tour packages in Malang East Java.'
-                : 'Konsultasi gratis untuk sewa bus rombongan, VIP transfer, sewa mobil dinas, hingga paket trip khusus Malang & Bromo.'}
-            </p>
-          </div>
-
-          <button
-            onClick={() => handleWhatsApp('Halo Yoga Transport, saya ingin konsultasi layanan transportasi kustom.')}
-            className="z-10 bg-[#2563eb] hover:bg-blue-700 text-white font-display font-extrabold text-xs uppercase py-3.5 px-7 rounded-xl shadow-lg transition-all shrink-0 cursor-pointer text-center"
-          >
-            {lang === 'EN' ? 'CHAT CONSULTANT' : 'HUBUNGI TIM KAMI'}
-          </button>
         </div>
 
       </div>

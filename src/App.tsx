@@ -145,10 +145,7 @@ export default function App() {
             {/* 5. Section: Layanan Tambahan */}
             <ExtraServices lang={lang} />
 
-            {/* 6. Section: Cara Pemesanan Mudah */}
-            <BookingSteps lang={lang} />
-
-            {/* 7. Penginapan Homestay Malang (Replacing Ulasan / Testimonials) */}
+            {/* 6. Penginapan Homestay Malang */}
             <HomestaySection lang={lang} />
           </>
         ) : currentPage === 'tours' ? (
