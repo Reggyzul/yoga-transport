@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Services from './components/Services';
+import About from './components/About';
 import ToursList from './components/ToursList';
 import CarList from './components/CarList';
 import BookingSteps from './components/BookingSteps';
@@ -40,7 +40,7 @@ export default function App() {
 
       // Track active section on home page
       if (currentPage === 'home') {
-        const sections = ['home', 'services', 'tours', 'steps', 'contact'];
+        const sections = ['home', 'about', 'cars', 'tours', 'steps', 'contact'];
         const scrollPosition = window.scrollY + 250; // Offset
 
         for (const section of sections) {
@@ -127,7 +127,10 @@ export default function App() {
             {/* 1. Hero Section */}
             <Hero onRentClick={() => handleNavClick('rentals')} lang={lang} />
 
-            {/* 2. Section: Pilihan Mobil / Armada (Limited to 3 items with Selengkapnya) */}
+            {/* 2. Section: Tentang Kami Yoga Transport (Directly below Home section) */}
+            <About lang={lang} />
+
+            {/* 3. Section: Pilihan Mobil / Armada (Limited to 3 items with Selengkapnya) */}
             <CarList 
               onSelectCar={handleSelectCar} 
               lang={lang} 
@@ -135,13 +138,13 @@ export default function App() {
               onViewMore={() => handleNavClick('rentals')}
             />
 
-            {/* 3. Section: Paket Wisata Terbaik Kami */}
+            {/* 4. Section: Paket Wisata Terbaik Kami */}
             <ToursList lang={lang} />
 
-            {/* 4. Section: Cara Pemesanan Mudah */}
+            {/* 5. Section: Cara Pemesanan Mudah */}
             <BookingSteps lang={lang} />
 
-            {/* 5. Testimonials */}
+            {/* 6. Testimonials */}
             <Testimonials lang={lang} />
           </>
         ) : currentPage === 'tours' ? (

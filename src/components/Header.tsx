@@ -34,6 +34,7 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
 
   const navItems = [
     { label: t.nav_home, id: 'home', type: 'page', pageId: 'home' },
+    { label: lang === 'EN' ? 'About Us' : 'Tentang Kami', id: 'about', type: 'section', sectionId: 'about' },
     { label: lang === 'EN' ? 'Tours' : 'Paket Wisata', id: 'tours', type: 'page', pageId: 'tours' },
     { label: lang === 'EN' ? 'Rentals' : 'Pilihan Mobil', id: 'rentals', type: 'page', pageId: 'rentals' },
     { label: lang === 'EN' ? 'Clients' : 'Ulasan', id: 'testimonials', type: 'section', sectionId: 'testimonials' },
