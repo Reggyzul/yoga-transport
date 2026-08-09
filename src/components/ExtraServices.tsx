@@ -184,8 +184,6 @@ export default function ExtraServices({ lang }: ExtraServicesProps) {
           ))}
         </div>
 
-        </div>
-
       </div>
     </section>
   );
