@@ -84,6 +84,26 @@ export default function GallerySection({ lang }: GallerySectionProps) {
       location: 'Spot Wooden Deck Malang South Coast',
       tag: 'Eksplor Pantai Malang',
       description: 'Dokumentasi kebersamaan wisatawan di spot foto wooden deck bermandikan pemandangan laut biru jernih Malang Selatan.'
+    },
+    {
+      id: 'galeri-6',
+      image: '/gallery/galeri6.jpg',
+      title: 'Spot Candi Laut Pantai Balekambang',
+      titleEn: 'Balekambang Temple & Ocean Bridge',
+      category: 'beach',
+      location: 'Pantai Balekambang Malang',
+      tag: 'Ikon Wisata Pantai Malang',
+      description: 'Foto kebersamaan wisatawan di atas jembatan ikonik penyeberangan Candi Pura Ismoyo Pantai Balekambang Malang.'
+    },
+    {
+      id: 'galeri-7',
+      image: '/gallery/galeri7.jpg',
+      title: 'Wisata Edukasi Dino Mall Jatim Park 3',
+      titleEn: 'Jatim Park 3 Dino Mall Batu Tour',
+      category: 'tour',
+      location: 'Dino Mall Jatim Park 3 Kota Batu',
+      tag: 'City Tour Batu Malang',
+      description: 'Keceriaan wisatawan saat tiba di tempat hiburan populer Dino Mall Jatim Park 3 Kota Batu bersama tim Yoga Transport.'
     }
   ];
 
@@ -132,7 +152,7 @@ export default function GallerySection({ lang }: GallerySectionProps) {
             }`}
           >
             <Filter className="w-3.5 h-3.5" />
-            <span>{lang === 'EN' ? 'All Photos' : 'Semua Foto (5)'}</span>
+            <span>{lang === 'EN' ? 'All Photos' : 'Semua Foto (7)'}</span>
           </button>
 
           <button
