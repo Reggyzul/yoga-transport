@@ -547,36 +547,26 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
         <div className="flex justify-center gap-3 sm:gap-4 mb-10">
           <button
             onClick={() => handleSelectBranch('rja1')}
-            className={`px-6 sm:px-8 py-3.5 rounded-2xl font-display font-extrabold text-xs sm:text-sm transition-all cursor-pointer shadow-sm flex items-center gap-2.5 border ${
+            className={`px-8 sm:px-10 py-3.5 rounded-2xl font-display font-extrabold text-sm sm:text-base transition-all cursor-pointer shadow-sm flex items-center gap-2.5 border ${
               activeBranch === 'rja1'
                 ? 'bg-luxury-black text-luxury-gold border-luxury-gold shadow-lg scale-[1.03] ring-2 ring-amber-400/20'
                 : 'bg-white text-gray-700 border-gray-200 hover:border-luxury-gold hover:text-luxury-gold'
             }`}
           >
             <Building className="w-4.5 h-4.5" />
-            <span>RJA 1 - Jl. Jaksa Agung Suprapto</span>
-            <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase ${
-              activeBranch === 'rja1' ? 'bg-[#f59e0b] text-black' : 'bg-amber-100 text-[#d97706]'
-            }`}>
-              Pusat Kota
-            </span>
+            <span>RJA 1</span>
           </button>
 
           <button
             onClick={() => handleSelectBranch('rja2')}
-            className={`px-6 sm:px-8 py-3.5 rounded-2xl font-display font-extrabold text-xs sm:text-sm transition-all cursor-pointer shadow-sm flex items-center gap-2.5 border ${
+            className={`px-8 sm:px-10 py-3.5 rounded-2xl font-display font-extrabold text-sm sm:text-base transition-all cursor-pointer shadow-sm flex items-center gap-2.5 border ${
               activeBranch === 'rja2'
                 ? 'bg-luxury-black text-luxury-gold border-luxury-gold shadow-lg scale-[1.03] ring-2 ring-amber-400/20'
                 : 'bg-white text-gray-700 border-gray-200 hover:border-luxury-gold hover:text-luxury-gold'
             }`}
           >
             <Home className="w-4.5 h-4.5" />
-            <span>RJA 2 - Jl. Tawangmangu</span>
-            <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase ${
-              activeBranch === 'rja2' ? 'bg-[#f59e0b] text-black' : 'bg-amber-100 text-[#d97706]'
-            }`}>
-              Cozy & Pastel
-            </span>
+            <span>RJA 2</span>
           </button>
         </div>
 
