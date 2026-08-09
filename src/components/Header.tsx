@@ -115,11 +115,15 @@ export default function Header({
               className="flex items-center cursor-pointer group py-1 gap-2.5 sm:gap-3"
               id="header-logo"
             >
-              <img
-                src="/logo.jpg"
-                alt="Yoga Transport Emblem Logo"
-                className="h-11 sm:h-13 w-auto max-h-[52px] object-contain transition-transform duration-500 group-hover:scale-105 filter drop-shadow-sm"
-              />
+              <picture>
+                <source srcSet="/logo.avif" type="image/avif" />
+                <source srcSet="/logo.png" type="image/png" />
+                <img
+                  src="/logo.png"
+                  alt="Yoga Transport Emblem Logo"
+                  className="h-12 sm:h-14 w-auto max-h-[56px] object-contain transition-transform duration-500 group-hover:scale-105 filter drop-shadow-md"
+                />
+              </picture>
               <div className="flex flex-col text-left">
                 <span className="font-display font-extrabold text-base sm:text-lg text-gray-900 leading-none tracking-tight group-hover:text-[#d97706] transition-colors">
                   YOGA TRANSPORT
