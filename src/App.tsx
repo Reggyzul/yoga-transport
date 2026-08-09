@@ -10,7 +10,6 @@ import About from './components/About';
 import ToursList from './components/ToursList';
 import ExtraServices from './components/ExtraServices';
 import CarList from './components/CarList';
-import BookingSteps from './components/BookingSteps';
 import HomestaySection from './components/HomestaySection';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
