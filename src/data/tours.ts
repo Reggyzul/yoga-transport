@@ -91,7 +91,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '1 Hari',
     durationEn: '1 Day',
     badge: null,
-    image: 'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&q=80&w=800',
+    image: '/tumpak_sewu.png',
     description: 'Petualangan menuju "Niagara-nya Indonesia" dengan pemandangan air terjun yang megah.',
     descriptionEn: 'An adventure to the "Niagara of Indonesia" featuring breathtaking canyon waterfalls.',
     highlights: [
@@ -141,65 +141,6 @@ export const TOUR_PACKAGES: TourPackage[] = [
     waMessage: 'Halo Yoga Transport, saya ingin memesan Paket Explore Air Terjun Tumpak Sewu (Mulai Rp 400.000). Mohon bantuan jadwalnya.'
   },
   {
-    id: 'ziarah-wali-5',
-    title: 'Paket Ziarah Wali 5',
-    titleEn: 'Wali 5 Pilgrimage Tour Package',
-    priceText: 'Mulai Dari Rp 1.300.000',
-    priceTextEn: 'Starting From Rp 1.300.000',
-    numericPrice: 1300000,
-    duration: '1 Hari',
-    durationEn: '1 Day',
-    badge: null,
-    image: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&q=80&w=800',
-    description: 'Nikmati perjalanan spiritual dengan Paket Ziarah Wali 5 dari Malang. ke Makam Sunan Ampel, Sunan Giri, Sunan Bonang, Sunan Drajat, dan Sunan Maulana Malik Ibrahim dalam satu hari penuh.',
-    descriptionEn: 'Spiritual pilgrimage package covering 5 sacred Walisongo tombs across East Java in one full day.',
-    highlights: [
-      'Makam Sunan Maulana Malik Ibrahim (Gresik)',
-      'Makam Sunan Giri (Gresik)',
-      'Makam Sunan Ampel (Surabaya)',
-      'Makam Sunan Drajat (Lamongan)',
-      'Makam Sunan Bonang (Tuban)'
-    ],
-    highlightsEn: [
-      'Tomb of Sunan Maulana Malik Ibrahim (Gresik)',
-      'Tomb of Sunan Giri (Gresik)',
-      'Tomb of Sunan Ampel (Surabaya)',
-      'Tomb of Sunan Drajat (Lamongan)',
-      'Tomb of Sunan Bonang (Tuban)'
-    ],
-    included: [
-      'Armada Mobil Privat (Avanza/Innova/Hiace/Bus)',
-      'Driver Pengalaman Ziarah + BBM',
-      'Biaya Parkir & Jalan Tol',
-      'Air Mineral Untuk Rombongan'
-    ],
-    includedEn: [
-      'Private Vehicle (Avanza/Innova/Hiace/Bus)',
-      'Experienced Pilgrimage Driver & Fuel',
-      'Parking Fees & Highway Tolls',
-      'Complimentary Mineral Water'
-    ],
-    excluded: [
-      'Infaq / Sedekah Pribadi di Makam',
-      'Ojek / Becak Masuk Makam (Jika ada)',
-      'Makan & Belanja Pribadi'
-    ],
-    excludedEn: [
-      'Personal Donations at Tombs',
-      'Local Shuttle/Rickshaw Fee to Tombs',
-      'Meals & Personal Souvenirs'
-    ],
-    itinerary: [
-      { title: '05:00 - Berangkat', desc: 'Berangkat dari Kota Malang menuju Surabaya & Gresik.' },
-      { title: '07:30 - Sunan Ampel', desc: 'Ziarah Makam Sunan Ampel Surabaya.' },
-      { title: '10:00 - Sunan Giri & Maulana Malik Ibrahim', desc: 'Ziarah Makam Sunan Maulana Malik Ibrahim & Sunan Giri di Gresik.' },
-      { title: '13:00 - Sunan Drajat', desc: 'Makan siang & Ziarah Makam Sunan Drajat Lamongan.' },
-      { title: '16:00 - Sunan Bonang', desc: 'Ziarah Makam Sunan Bonang Tuban.' },
-      { title: '21:00 - Perjalanan Pulang', desc: 'Tiba kembali di Kota Malang dengan selamat.' }
-    ],
-    waMessage: 'Halo Yoga Transport, saya ingin memesan Paket Ziarah Wali 5 (Mulai Rp 1.300.000). Mohon informasi ketersediaan armada dan jadwalnya.'
-  },
-  {
     id: 'pantai-malang',
     title: 'Paket Wisata Pantai Malang',
     titleEn: 'Malang Southern Beach Tour Package',
@@ -209,7 +150,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '1 Hari',
     durationEn: '1 Day',
     badge: null,
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800',
+    image: '/pantai_malang.png',
     description: 'Paket wisata Malang 4 hari 3 malam ini menawarkan pengalaman yang lengkap, mulai dari wisata edukasi, petualangan di alam, hingga kuliner khas.',
     descriptionEn: 'Explore the stunning tropical southern coastline of Malang with picturesque cliff views and white beaches.',
     highlights: [
@@ -266,7 +207,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '2 Hari 1 Malam',
     durationEn: '2 Days 1 Night',
     badge: null,
-    image: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&q=80&w=800',
+    image: '/tours_bromo.jpg',
     description: 'Paket ini sangat cocok bagi wisatawan luar kota yang memiliki waktu terbatas, seperti liburan akhir pekan.',
     descriptionEn: 'The perfect weekend escape package combining Batu city attractions with midnight Mount Bromo sunrise.',
     highlights: [
@@ -321,7 +262,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     duration: '3 Hari 2 Malam',
     durationEn: '3 Days 2 Nights',
     badge: null,
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&q=80&w=800',
+    image: '/malang_batu.png',
     description: 'Tanpa perlu repot mengatur itinerary, paket ini sudah mencakup berbagai destinasi populer seperti Jatim Park 2, Jatim Park 3, Museum Angkut, BNS, Wisata Petik Apel, dan Flora Wisata Santerra de Laponte.',
     descriptionEn: 'Hassle-free 3D2N tour featuring top Malang & Batu family destinations including Jatim Park 2 & 3, Museum Angkut, Apple Orchard, and Santerra.',
     highlights: [
