@@ -44,7 +44,7 @@ export default function Footer({ onNavClick, lang }: FooterProps) {
               <img
                 src="/logo.png"
                 alt="Yoga Transport Logo"
-                className="h-18 w-auto object-contain"
+                className="h-24 sm:h-28 w-auto max-h-[90px] object-contain filter drop-shadow-lg brightness-110"
               />
             </div>
 

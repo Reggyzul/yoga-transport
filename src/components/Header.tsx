@@ -114,8 +114,8 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
             >
               <img
                 src="/logo.png"
-                alt="Yoga Transport"
-                className="h-20 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                alt="Yoga Transport 8K Realistic Logo"
+                className="h-24 sm:h-28 w-auto max-h-[85px] object-contain transition-transform duration-500 group-hover:scale-105 filter drop-shadow-md"
               />
             </div>
 
