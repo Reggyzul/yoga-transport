@@ -69,7 +69,7 @@ export default function Hero({ onRentClick, lang }: HeroProps) {
   return (
     <section
       id="home"
-      className="relative min-h-[90vh] sm:min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-gray-950 font-sans pt-36 sm:pt-44 pb-16 sm:pb-24"
+      className="relative min-h-[90vh] sm:min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-gray-950 font-sans pt-28 sm:pt-36 pb-16 sm:pb-24"
     >
       {/* Background Image Carousel Slider */}
       <AnimatePresence mode="wait">

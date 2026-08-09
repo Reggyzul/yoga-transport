@@ -59,43 +59,7 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
       id="main-header"
       className="fixed top-0 left-0 w-full z-50 flex flex-col shadow-sm"
     >
-      {/* 1. Top Bar / Header Contact */}
-      <div className="bg-luxury-black text-gray-300 text-[10px] sm:text-xs py-2.5 px-4 sm:px-6 lg:px-8 border-b border-white/5 flex justify-between items-center">
-        <div className="max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-center gap-2">
-          <div className="flex items-center gap-1.5">
-            <MapPin className="w-3.5 h-3.5 text-luxury-gold shrink-0" />
-            <span className="truncate max-w-[280px] sm:max-w-none text-center sm:text-left">{t.topbar_address}</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <a 
-              href="https://api.whatsapp.com/send?phone=628813305066" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="flex items-center gap-1.5 hover:text-luxury-gold transition-colors font-semibold"
-            >
-              <Phone className="w-3.5 h-3.5 text-luxury-gold shrink-0 animate-pulse" />
-              <span>08813305066</span>
-            </a>
-            <div className="h-3 w-px bg-white/20 hidden sm:block" />
-            <a 
-              href="https://instagram.com/yoga_transport" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="flex items-center gap-1.5 hover:text-luxury-gold transition-colors font-semibold text-rose-400"
-            >
-              <Instagram className="w-3.5 h-3.5 shrink-0" />
-              <span>@yoga_transport</span>
-            </a>
-            <div className="h-3 w-px bg-white/20 hidden sm:block" />
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-luxury-gold shrink-0" />
-              <span>{t.topbar_service}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Main Navigation Bar */}
+      {/* Main Navigation Bar */}
       <div
         className={`w-full transition-all duration-300 ${
           isScrolled
