@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Star, Briefcase, Plane, PhoneCall, ShieldCheck, UserCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { TRANSLATIONS } from '../utils/translations';
 
 interface HeroProps {
@@ -11,153 +11,154 @@ interface HeroProps {
 export default function Hero({ onRentClick, lang }: HeroProps) {
   const t = TRANSLATIONS[lang];
 
-  const handleWhatsAppClick = () => {
-    const waNumber = '628813305066';
-    const text = encodeURIComponent(
-      lang === 'EN'
-        ? 'Hello Yoga Transport, I would like to inquire about booking a vehicle in Malang.'
-        : 'Halo Yoga Transport, saya ingin bertanya tentang pemesanan armada rental di Malang.'
-    );
-    window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${text}`, '_blank', 'noreferrer');
+  const slides = [
+    {
+      id: 'bromo',
+      title: lang === 'EN' ? 'EXPLORE THE BEAUTY OF BROMO' : 'JELAJAHI PESONA BROMO',
+      subtitle: lang === 'EN' 
+        ? 'Enjoy an unforgettable golden sunrise moment with our premium tour packages.'
+        : 'Nikmati momen golden sunrise tak terlupakan dengan paket wisata premium kami.',
+      image: '/tours_bromo.jpg',
+      waMsg: 'Halo Yoga Transport, saya ingin konsultasi gratis mengenai paket wisata Bromo.'
+    },
+    {
+      id: 'malang-batu',
+      title: lang === 'EN' ? 'DISCOVER MALANG & BATU' : 'EKSPLORASI MALANG & BATU',
+      subtitle: lang === 'EN'
+        ? 'Best private holiday experience in Batu city theme parks and natural wonders.'
+        : 'Pengalaman liburan privat terbaik keliling destinasi populer Malang dan Kota Batu.',
+      image: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&q=80&w=1600',
+      waMsg: 'Halo Yoga Transport, saya ingin bertanya tentang paket wisata Malang & Batu.'
+    },
+    {
+      id: 'tumpak-sewu',
+      title: lang === 'EN' ? 'MAGNIFICENT TUMPAK SEWU' : 'KEINDAHAN TUMPAK SEWU',
+      subtitle: lang === 'EN'
+        ? 'Adventure to the Niagara of Indonesia with our professional local guides.'
+        : 'Petualangan seru menuju Niagara-nya Indonesia dengan panduan driver berpengalaman.',
+      image: 'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&q=80&w=1600',
+      waMsg: 'Halo Yoga Transport, saya tertarik dengan trip Tumpak Sewu.'
+    }
+  ];
+
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  // Auto rotate slides every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const nextSlide = () => {
+    setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
-  const handleLearnMore = () => {
-    const el = document.getElementById('about');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  const prevSlide = () => {
+    setCurrentSlideIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
+  };
+
+  const currentSlide = slides[currentSlideIndex];
+
+  const handleConsultation = () => {
+    const waNumber = '628813305066';
+    window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(currentSlide.waMsg)}`, '_blank', 'noreferrer');
   };
 
   return (
     <section
       id="home"
-      className="relative pt-44 sm:pt-48 pb-20 bg-white text-gray-800 flex items-center overflow-hidden border-b border-gray-100"
+      className="relative min-h-[85vh] sm:min-h-screen w-full flex items-center justify-center overflow-hidden bg-gray-950 font-sans"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
-          {/* Hero Left: BromoCreative Collage with driver team */}
-          <div className="lg:col-span-6 relative flex flex-col items-center justify-center order-2 lg:order-1 mt-10 lg:mt-0" id="hero-collage-container">
-            
-            {/* Handwriting script title */}
-            <motion.h3 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              style={{ fontFamily: 'var(--font-script)' }}
-              className="text-[#2563eb] text-4xl sm:text-5xl lg:text-6xl text-center font-normal leading-none mb-1 select-none"
-            >
-              Premium Trip Planner
-            </motion.h3>
+      {/* Background Image Carousel Slider */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide.id}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <img
+            src={currentSlide.image}
+            alt={currentSlide.title}
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Dark Overlay Gradient matching screenshot */}
+          <div className="absolute inset-0 bg-black/55 backdrop-brightness-90" />
+        </motion.div>
+      </AnimatePresence>
 
-            {/* Direct quote inside quotes */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="font-sans text-[10px] sm:text-xs text-gray-500 italic max-w-xs text-center leading-relaxed mb-6 px-4"
-            >
-              "Jangan ragu memilih perjalanan Anda bersama tim kami, karena kami siap memberikan pelayanan sepenuh hati dan menghadirkan pengalaman istimewa..."
-            </motion.p>
-
-            {/* Central Circle Frame with Team photo overlay */}
-            <div className="relative w-72 h-72 sm:w-80 sm:h-80 mx-auto" id="collage-graphic">
-              {/* Circular Bromo sunrise photo */}
-              <div className="w-full h-full rounded-full overflow-hidden border-[6px] border-white shadow-xl bg-gray-100 relative z-10">
-                <img
-                  src="https://images.unsplash.com/photo-1588668214407-6ea9a6d7c26b?auto=format&fit=crop&q=80&w=600"
-                  alt="Mount Bromo Sunrise View"
-                  className="w-full h-full object-cover select-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-              </div>
-
-              {/* Overlapping Red-Shirted Driver Team */}
-              <div className="absolute bottom-[-16px] left-[-20px] right-[-20px] z-20 flex justify-center">
-                <img
-                  src="/team_red.png"
-                  alt="Yoga Transport Professional Drivers"
-                  className="w-[110%] h-auto object-contain select-none drop-shadow-[0_15px_30px_rgba(0,0,0,0.15)]"
-                />
-              </div>
-
-              {/* Floating plane icon */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-10 right-[-10px] w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#2563eb] z-30"
-              >
-                <Plane className="w-4 h-4 transform rotate-[45deg]" />
-              </motion.div>
-
-              {/* Floating suitcase icon */}
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-12 left-[-15px] w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center text-amber-500 z-30"
-              >
-                <Briefcase className="w-4 h-4" />
-              </motion.div>
-            </div>
-
-          </div>
-
-          {/* Hero Right: Ciptakan Momen Liburan Bersama Kami */}
-          <div className="lg:col-span-6 flex flex-col space-y-6 order-1 lg:order-2 text-left" id="hero-text-container">
-            
-            {/* Small uppercase tag */}
-            <span className="font-display font-extrabold text-xs text-[#2563eb] tracking-widest uppercase">
-              TENTANG KAMI YOGA TRANSPORT
-            </span>
-
-            {/* Large Bold Headline */}
-            <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-gray-900 tracking-tight leading-tight uppercase">
-              Ciptakan Momen <br className="hidden sm:block" />
-              Liburan Bersama Kami
+      {/* Main Content Area */}
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-32 flex flex-col items-center justify-center">
+        
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-6 max-w-4xl"
+          >
+            {/* Elegant Large Serif Title matching screenshot */}
+            <h1 className="font-['Playfair_Display',Georgia,serif] text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-wider text-white drop-shadow-md leading-[1.15]">
+              {currentSlide.title}
             </h1>
 
-            {/* Description matching BromoCreative about paragraph style */}
-            <div className="font-sans text-gray-500 text-sm sm:text-base leading-relaxed space-y-4">
-              <p>
-                <strong>Yoga Transport</strong> merupakan unit usaha penyedia layanan transportasi profesional yang berbasis di Malang – Jawa Timur. Kami memiliki pengalaman bertahun-tahun dalam menangani kebutuhan perjalanan dinas, city tour Malang-Batu, hingga paket liburan keluarga dan kunjungan wisata alam Bromo dengan jangkauan layanan terbaik.
-              </p>
-              <p>
-                Kami memahami bahwa kenyamanan dan keselamatan perjalanan Anda adalah prioritas utama. Oleh karena itu, setiap program layanan dirancang secara khusus didukung oleh pengemudi kami yang ramah, profesional, berpengalaman di rute-rute pegunungan Jawa Timur, serta ketersediaan armada bersih yang selalu terawat dan steril sebelum beroperasi.
-              </p>
-            </div>
+            {/* Subtitle text */}
+            <p className="font-sans text-gray-200 text-base sm:text-lg md:text-xl font-normal max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+              {currentSlide.subtitle}
+            </p>
 
-            {/* Specs sticker badge */}
-            <div className="flex flex-wrap gap-4 py-2 border-t border-b border-gray-100 text-gray-600 text-xs">
-              <div className="flex items-center gap-1.5 font-semibold">
-                <ShieldCheck className="w-4 h-4 text-[#2563eb]" />
-                <span>Armada Steril & Terawat</span>
-              </div>
-              <div className="flex items-center gap-1.5 font-semibold">
-                <UserCheck className="w-4 h-4 text-[#2563eb]" />
-                <span>Driver Profesional Ramah</span>
-              </div>
-            </div>
-
-            {/* CTA Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            {/* KONSULTASI GRATIS Outline Gold CTA Button matching screenshot */}
+            <div className="pt-4 flex justify-center">
               <button
-                onClick={handleLearnMore}
-                className="bg-[#2563eb] hover:bg-blue-700 text-white font-display font-bold text-xs uppercase py-3.5 px-8 rounded-xl shadow-md transition-all cursor-pointer text-center"
+                onClick={handleConsultation}
+                className="px-8 sm:px-10 py-3.5 sm:py-4 border-2 border-[#f59e0b] hover:bg-[#f59e0b] hover:text-gray-950 text-[#f59e0b] font-display font-extrabold text-sm sm:text-base uppercase tracking-widest transition-all duration-300 rounded-sm shadow-xl cursor-pointer bg-black/20 backdrop-blur-xs"
               >
-                Learn More
-              </button>
-              
-              <button
-                onClick={handleWhatsAppClick}
-                className="border border-green-200 hover:border-green-300 bg-[#25D366] hover:bg-[#20ba5a] text-white font-display font-bold text-xs uppercase py-3.5 px-6 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <PhoneCall className="w-4 h-4" />
-                <span>Chat WhatsApp</span>
+                {lang === 'EN' ? 'FREE CONSULTATION' : 'KONSULTASI GRATIS'}
               </button>
             </div>
+          </motion.div>
+        </AnimatePresence>
 
-          </div>
-
+        {/* Bottom Golden Indicator Line */}
+        <div className="mt-12 flex items-center justify-center gap-2">
+          {slides.map((slide, idx) => (
+            <button
+              key={slide.id}
+              onClick={() => setCurrentSlideIndex(idx)}
+              className={`h-1.5 transition-all duration-300 rounded-full cursor-pointer ${
+                idx === currentSlideIndex ? 'w-12 bg-[#f59e0b]' : 'w-3 bg-white/40 hover:bg-white/70'
+              }`}
+              title={`Slide ${idx + 1}`}
+            />
+          ))}
         </div>
+
       </div>
+
+      {/* Navigation Arrow Left */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 rounded-full text-white/70 hover:text-white bg-black/20 hover:bg-black/50 transition-all cursor-pointer backdrop-blur-sm hidden sm:flex"
+        title="Previous Slide"
+      >
+        <ChevronLeft className="w-8 h-8" />
+      </button>
+
+      {/* Navigation Arrow Right */}
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 rounded-full text-white/70 hover:text-white bg-black/20 hover:bg-black/50 transition-all cursor-pointer backdrop-blur-sm hidden sm:flex"
+        title="Next Slide"
+      >
+        <ChevronRight className="w-8 h-8" />
+      </button>
+
     </section>
   );
 }
