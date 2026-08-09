@@ -685,14 +685,14 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
               {/* Left: RJA 2 Tawangmangu Building Image */}
               <div 
                 onClick={() => setShowCatalogModal(true)}
-                className="lg:col-span-6 relative min-h-[320px] sm:min-h-[380px] bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 flex items-center justify-center p-2 sm:p-3 overflow-hidden cursor-pointer group"
+                className="lg:col-span-6 relative min-h-[260px] sm:min-h-[340px] bg-gray-900 overflow-hidden cursor-pointer"
               >
                 <img
                   src="/rja2.avif"
                   alt="Homestay RJA 2 Tawangmangu Malang"
-                  className="w-full h-full object-contain rounded-2xl group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
                 <div className="absolute top-4 right-4 bg-luxury-gold text-black font-display font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-pulse">
                   <Sparkles className="w-3.5 h-3.5" />
