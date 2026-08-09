@@ -11,8 +11,7 @@ import {
   MessageSquare,
   Users,
   ShieldCheck,
-  Building,
-  Heart
+  Building
 } from 'lucide-react';
 import { TRANSLATIONS } from '../utils/translations';
 
@@ -54,7 +53,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
         'Kasur Single/Queen (Ukuran 120 x 200 cm)',
         'Wi-Fi Cepat & Gratis 24 Jam',
         'Kipas Angin & Gantungan Baju',
-        'Selimut & Perelengkapan Mandi'
+        'Selimut & Perlengkapan Mandi'
       ],
       bedInfo: '1 Kasur (120 x 200 cm)',
       bathroom: 'Kamar Mandi Dalam',
@@ -111,7 +110,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
     },
     {
       id: 'room-satu',
-      name: 'Room Satu (Group Room)',
+      name: 'Room Satu',
       badge: 'Kapasitas Rombongan (Max 5 Orang)',
       capacity: 'Maksimal 5 Orang',
       pricing: [
@@ -125,13 +124,130 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
         'Kamar Mandi Luar Bersih & Steril',
         'Kipas Angin & Rak Baju',
         'Wi-Fi Cepat Gratis',
-        'Selimut & Perelengkapan'
+        'Selimut & Perlengkapan Mandi'
       ],
       bedInfo: '2 Kasur (120x200 & 160x200 cm)',
-      bathroom: 'Kamar Mandi Luar Bersih',
+      bathroom: 'Kamar Mandi Luar',
       tv: 'Non TV',
       image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=800',
-      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Room Satu (Kapasitas rombongan max 5 orang).'
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Room Satu (Kapasitas max 5 orang).'
+    },
+    {
+      id: 'room-dua',
+      name: 'Room Dua',
+      badge: 'Tersedia 1 Kamar (Max 4 Orang)',
+      capacity: 'Maksimal 4 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 95.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 47.500 / orang', totalNote: 'Total Rp 95.000' },
+        { pax: '3 Orang', rate: 'Rp 41.000 / orang' },
+        { pax: '4 Orang', rate: 'Rp 39.000 / orang' }
+      ],
+      facilities: [
+        'Kamar Mandi Luar Bersih',
+        '2 Kasur Ukuran (120 x 200 cm & 120 x 200 cm)',
+        'Kipas Angin & Rak Baju',
+        'Wi-Fi Cepat Gratis',
+        'Gantungan Baju & Selimut'
+      ],
+      bedInfo: '2 Kasur Twin (120 x 200 cm)',
+      bathroom: 'Kamar Mandi Luar',
+      tv: 'Non TV',
+      image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Room Dua (Maks 4 orang).'
+    },
+    {
+      id: 'room-tiga',
+      name: 'Room Tiga',
+      badge: 'Rombongan Luas + AC & Smart TV (Max 8 Orang)',
+      capacity: 'Maksimal 8 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 195.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 97.500 / orang', totalNote: 'Total Rp 195.000' },
+        { pax: '3 - 4 Orang', rate: 'Rp 60.000 - Rp 65.000 / orang' },
+        { pax: '5 - 8 Orang', rate: 'Rp 50.000 - Rp 55.000 / orang' }
+      ],
+      facilities: [
+        'Kamar Mandi Luar Bersih',
+        'Kamar Luas + 2 SET Tempat Tidur Susun (Ukuran 120 x 200 cm)',
+        'Air Conditioner (AC) & Smart TV',
+        'Wi-Fi Cepat Gratis',
+        'Gantungan Baju, Rak, & Selimut'
+      ],
+      bedInfo: '2 SET Tidur Susun (120x200 cm)',
+      bathroom: 'Kamar Mandi Luar',
+      tv: 'Smart TV + AC',
+      image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Room Tiga (Rombongan max 8 orang dengan AC & Smart TV).'
+    },
+    {
+      id: 'room-empat',
+      name: 'Room Empat',
+      badge: 'Kamar Nyaman + Smart TV (Max 3 Orang)',
+      capacity: 'Maksimal 3 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 99.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 49.500 / orang', totalNote: 'Total Rp 99.000' },
+        { pax: '3 Orang', rate: 'Rp 48.000 / orang' }
+      ],
+      facilities: [
+        'Kamar Mandi Luar Bersih',
+        'Kasur Queen (Ukuran 160 x 200 cm)',
+        'Smart TV & Kipas Angin',
+        'Wi-Fi Cepat Gratis',
+        'Gantungan Baju, Rak, & Selimut'
+      ],
+      bedInfo: '1 Kasur Queen (160 x 200 cm)',
+      bathroom: 'Kamar Mandi Luar',
+      tv: 'Smart TV',
+      image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Room Empat (Maks 3 orang + Smart TV).'
+    },
+    {
+      id: 'room-lima',
+      name: 'Room Lima',
+      badge: 'Kamar Susun + AC & Smart TV (Max 6 Orang)',
+      capacity: 'Maksimal 6 Orang',
+      pricing: [
+        { pax: '1 - 2 Orang', rate: 'Rp 75.000 - Rp 150.000 / orang' },
+        { pax: '3 - 4 Orang', rate: 'Rp 60.000 - Rp 65.000 / orang' },
+        { pax: '5 - 6 Orang', rate: 'Rp 50.000 / orang' }
+      ],
+      facilities: [
+        '2 SET Tempat Tidur Susun (Ukuran 120 x 200 cm)',
+        'Full Air Conditioner (AC) & Smart TV',
+        'Kamar Mandi Luar Bersih',
+        'Wi-Fi Cepat Gratis',
+        'Gantungan Baju, Rak, & Selimut'
+      ],
+      bedInfo: '2 SET Tidur Susun (120x200 cm)',
+      bathroom: 'Kamar Mandi Luar',
+      tv: 'Smart TV + AC',
+      image: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Room Lima (Maks 6 orang dengan AC & Smart TV).'
+    },
+    {
+      id: 'room-enem',
+      name: 'Room Enam',
+      badge: 'Kamar Susun + Smart TV (Max 6 Orang)',
+      capacity: 'Maksimal 6 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 117.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 58.500 / orang', totalNote: 'Total Rp 117.000' },
+        { pax: '3 - 6 Orang', rate: 'Rp 50.000 / orang' }
+      ],
+      facilities: [
+        '2 SET Tempat Tidur Susun (Ukuran 120 x 200 cm)',
+        'Smart TV & Kipas Angin',
+        'Kamar Mandi Luar Bersih',
+        'Wi-Fi Cepat Gratis',
+        'Gantungan Baju, Rak, & Selimut'
+      ],
+      bedInfo: '2 SET Tidur Susun (120x200 cm)',
+      bathroom: 'Kamar Mandi Luar',
+      tv: 'Smart TV',
+      image: 'https://images.unsplash.com/photo-1540518614846-7ede433c517a?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Room Enam (Maks 6 orang + Smart TV).'
     },
     {
       id: 'family-room',
@@ -139,7 +255,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
       badge: 'Paket Rombongan Besar',
       capacity: 'Kapasitas 6 - 8+ Orang',
       pricing: [
-        { pax: 'Rombongan 6-8 Orang', rate: 'Mulai Rp 35.000 / orang' }
+        { pax: 'Rombongan 6-8+ Orang', rate: 'Mulai Rp 35.000 / orang' }
       ],
       facilities: [
         'Ruangan Luas & Kasur Rombongan',
@@ -225,7 +341,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
             {/* Interactive Room Catalog Selector Pills for RJA 1 */}
             <div className="bg-amber-50/60 p-4 rounded-2xl border border-amber-200/60 space-y-3">
               <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block text-center">
-                Pilih Tipe Kamar RJA 1 Malang:
+                Klik Tipe Kamar RJA 1 Malang di Bawah Ini:
               </span>
               <div className="flex flex-wrap items-center justify-center gap-2">
                 {rja1Rooms.map((room) => {
@@ -234,9 +350,9 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                     <button
                       key={room.id}
                       onClick={() => setActiveRoomId(room.id)}
-                      className={`px-4 py-2 rounded-xl text-xs font-display font-bold transition-all cursor-pointer border ${
+                      className={`px-3.5 py-2 rounded-xl text-xs font-display font-bold transition-all cursor-pointer border ${
                         isSelected
-                          ? 'bg-[#d97706] text-white border-[#d97706] shadow-md scale-[1.02]'
+                          ? 'bg-[#d97706] text-white border-[#d97706] shadow-md scale-[1.03]'
                           : 'bg-white text-gray-700 border-gray-200 hover:border-[#d97706] hover:bg-amber-100/50'
                       }`}
                     >
@@ -290,7 +406,7 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                     <div className="flex items-center justify-between border-b border-gray-100 pb-3">
                       <div>
                         <span className="text-[10px] font-bold uppercase tracking-wider text-[#d97706]">
-                          SPESIFIKASI KAMAR
+                          SPESIFIKASI KAMAR RJA 1
                         </span>
                         <h4 className="font-display font-extrabold text-xl text-gray-900">
                           {activeRoom.name}
