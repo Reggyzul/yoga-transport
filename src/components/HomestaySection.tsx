@@ -404,23 +404,95 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
       waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Room Tujuh (Full AC, max 5 orang).'
     },
     {
-      id: 'room-delapan-kiara-eliza-jumbo',
-      name: 'Room Delapan / Kiara / Eliza / Jumbo Room',
-      badge: 'Pilihan Kamar Tambahan RJA 2',
-      capacity: 'Kapasitas 4 - 8+ Orang',
+      id: 'room-delapan-rja2',
+      name: 'Room Delapan (RJA 2)',
+      badge: 'Hemat & Nyaman (Max 3 Orang)',
+      capacity: 'Maksimal 3 Orang',
       pricing: [
-        { pax: 'Rombongan 4 - 8 Orang', rate: 'Mulai Rp 50.000 - Rp 90.000 / orang' }
+        { pax: '1 Orang', rate: 'Rp 200.000 / orang', totalNote: 'Total Rp 200.000' },
+        { pax: '2 Orang', rate: 'Rp 100.000 / orang', totalNote: 'Total Rp 200.000' },
+        { pax: '3 Orang', rate: 'Rp 80.000 / orang', totalNote: 'Total Rp 240.000' }
       ],
       facilities: [
-        'Pilihan Kamar Mandi Dalam / Luar',
-        'Tersedia Opsi Full AC / Kipas Angin',
-        'Smart TV & Wi-Fi Cepat Gratis',
+        'Kamar Mandi Dalam Clean & Fresh',
+        'Kipas Angin & Sirkulasi Udara Bagus',
+        'Closet Jongkok & Perlengkapan Mandi',
+        'Wi-Fi Cepat Gratis 24 Jam',
+        'Selimut & Gantungan Baju'
+      ],
+      bedInfo: 'Kasur Queen / Twin Bed',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Non TV (Kipas Angin)',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Room Delapan (Maks 3 orang).'
+    },
+    {
+      id: 'kiara-room-rja2',
+      name: 'Kiara Room (RJA 2)',
+      badge: 'Cozy Family Room (Max 4 Orang)',
+      capacity: 'Maksimal 4 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 170.000 / orang', totalNote: 'Total Rp 170.000' },
+        { pax: '2 Orang', rate: 'Rp 85.000 / orang', totalNote: 'Total Rp 170.000' },
+        { pax: '3 Orang', rate: 'Rp 75.000 / orang', totalNote: 'Total Rp 225.000' },
+        { pax: '4 Orang', rate: 'Rp 62.500 / orang', totalNote: 'Total Rp 250.000' }
+      ],
+      facilities: [
+        'Bed Atas (120 x 200 cm) + Extra Bed Bawah (120 x 200 cm)',
+        'Kamar Mandi Dalam (Non Water Heater)',
+        'Kipas Angin & Closet Jongkok',
+        'Wi-Fi Cepat Gratis 24 Jam',
+        'Gantungan Baju & Selimut'
+      ],
+      bedInfo: 'Bed Atas (120x200) + Extra Bed (120x200)',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Kipas Angin',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Kiara Room (Maks 4 orang).'
+    },
+    {
+      id: 'eliza-room-rja2',
+      name: 'Eliza Room (RJA 2)',
+      badge: 'Pastel Aesthetic (Max 3 Orang)',
+      capacity: 'Maksimal 3 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 180.000 / orang', totalNote: 'Total Rp 180.000' },
+        { pax: '2 Orang', rate: 'Rp 90.000 / orang', totalNote: 'Total Rp 180.000' },
+        { pax: '3 Orang', rate: 'Rp 80.000 / orang', totalNote: 'Total Rp 240.000' }
+      ],
+      facilities: [
+        'Bed Atas (120 x 200 cm) + Bed Bawah (100 x 200 cm)',
+        'Kamar Mandi Dalam (Non Water Heater)',
+        'Kipas Angin & Closet Jongkok',
+        'Wi-Fi Cepat Gratis 24 Jam',
+        'Gantungan Baju & Selimut'
+      ],
+      bedInfo: 'Bed Atas (120x200) + Bed Bawah (100x200)',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Kipas Angin',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Eliza Room (Maks 3 orang).'
+    },
+    {
+      id: 'jumbo-room-rja2',
+      name: 'Jumbo Room (RJA 2)',
+      badge: 'Full AC & Smart TV Rombongan (Max 8 Orang)',
+      capacity: 'Maksimal 8 Orang',
+      pricing: [
+        { pax: '1 - 4 Orang', rate: 'Rp 92.500 / orang', totalNote: 'Total Rp 370.000' },
+        { pax: '5 Orang', rate: 'Rp 85.000 / orang', totalNote: 'Total Rp 425.000' },
+        { pax: '6 Orang', rate: 'Rp 80.000 / orang', totalNote: 'Total Rp 480.000' },
+        { pax: '7 Orang', rate: 'Rp 75.000 / orang', totalNote: 'Total Rp 525.000' },
+        { pax: '8 Orang', rate: 'Rp 67.500 / orang', totalNote: 'Total Rp 540.000' }
+      ],
+      facilities: [
+        'Model Bed Susun (Total 4 Kasur Ukuran 120 x 200 cm)',
+        'Full Air Conditioner (AC) & Smart TV',
+        'Kamar Mandi Dalam (Non Water Heater)',
+        'Closet Jongkok & Wi-Fi Cepat 24 Jam',
         'Selimut & Perlengkapan Mandi Lengkap'
       ],
-      bedInfo: 'Twin / Queen / Bunk Beds',
-      bathroom: 'Kamar Mandi Bersih',
-      tv: 'TV / AC Available',
-      waMessage: 'Halo Yoga Transport, saya ingin tanya info ketersediaan Room Delapan / Kiara / Eliza / Jumbo Room di RJA 2.'
+      bedInfo: '4 Kasur Susun (120x200 cm)',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Smart TV + AC',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 2 - Jumbo Room (Full AC & Smart TV max 8 orang).'
     }
   ];
 
