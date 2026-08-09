@@ -134,10 +134,13 @@ export default function App() {
             {/* 3. Section: Layanan Utama */}
             <Services lang={lang} />
 
-            {/* 4. Section: Cara Pemesanan Mudah */}
+            {/* 4. Section: Paket Wisata Terbaik Kami */}
+            <ToursList lang={lang} />
+
+            {/* 5. Section: Cara Pemesanan Mudah */}
             <BookingSteps lang={lang} />
 
-            {/* 5. Testimonials */}
+            {/* 6. Testimonials */}
             <Testimonials lang={lang} />
           </>
         ) : currentPage === 'tours' ? (
