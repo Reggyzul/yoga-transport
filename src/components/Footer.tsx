@@ -41,11 +41,15 @@ export default function Footer({ onNavClick, lang }: FooterProps) {
           {/* Column 1: Brand & Office Address */}
           <div className="md:col-span-5 space-y-6 text-left">
             <div className="flex items-center gap-3">
-              <img
-                src="/logo.avif"
-                alt="Yoga Transport Emblem Logo"
-                className="h-20 sm:h-24 w-auto max-h-[96px] object-contain filter drop-shadow-xl"
-              />
+              <picture>
+                <source srcSet="/logo.avif" type="image/avif" />
+                <source srcSet="/logo.png" type="image/png" />
+                <img
+                  src="/logo.png"
+                  alt="Yoga Transport Emblem Logo"
+                  className="h-20 sm:h-24 w-auto max-h-[96px] object-contain filter drop-shadow-xl"
+                />
+              </picture>
             </div>
 
             <p className="font-sans text-xs text-gray-400 leading-relaxed max-w-sm">
