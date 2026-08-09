@@ -116,7 +116,7 @@ export default function Header({
               id="header-logo"
             >
               <img
-                src="/logo.avif"
+                src="/logo.jpg"
                 alt="Yoga Transport Emblem Logo"
                 className="h-11 sm:h-13 w-auto max-h-[52px] object-contain transition-transform duration-500 group-hover:scale-105 filter drop-shadow-sm"
               />
