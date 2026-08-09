@@ -11,6 +11,7 @@ import ToursList from './components/ToursList';
 import ExtraServices from './components/ExtraServices';
 import CarList from './components/CarList';
 import HomestaySection from './components/HomestaySection';
+import GallerySection from './components/GallerySection';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import { Car } from './types';
@@ -20,7 +21,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { TRANSLATIONS } from './utils/translations';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'tours' | 'rentals'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'tours' | 'rentals' | 'gallery'>('home');
   const [activeSection, setActiveSection] = useState('home');
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -158,13 +159,18 @@ export default function App() {
             {/* Penginapan Homestay Malang */}
             <HomestaySection lang={lang} />
           </div>
-        ) : (
+        ) : currentPage === 'rentals' ? (
           <div className="pt-44 sm:pt-48">
             {/* Rentals View */}
             <CarList onSelectCar={handleSelectCar} lang={lang} />
             
             {/* Penginapan Homestay Malang */}
             <HomestaySection lang={lang} />
+          </div>
+        ) : (
+          <div className="pt-44 sm:pt-48">
+            {/* Gallery View */}
+            <GallerySection lang={lang} />
           </div>
         )}
 

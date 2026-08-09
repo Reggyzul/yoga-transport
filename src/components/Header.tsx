@@ -16,8 +16,8 @@ interface HeaderProps {
   onNavClick: (sectionId: string) => void;
   lang: 'ID' | 'EN';
   setLang: (lang: 'ID' | 'EN') => void;
-  currentPage: 'home' | 'tours' | 'rentals';
-  setCurrentPage: (page: 'home' | 'tours' | 'rentals') => void;
+  currentPage: 'home' | 'tours' | 'rentals' | 'gallery';
+  setCurrentPage: (page: 'home' | 'tours' | 'rentals' | 'gallery') => void;
   activeSection: string;
   onBookingClick: () => void;
 }
@@ -51,7 +51,7 @@ export default function Header({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handlePageClick = (pageId: 'home' | 'tours' | 'rentals') => {
+  const handlePageClick = (pageId: 'home' | 'tours' | 'rentals' | 'gallery') => {
     setCurrentPage(pageId);
     onNavClick(pageId);
     setIsOpen(false);
@@ -246,6 +246,25 @@ export default function Header({
                 </AnimatePresence>
               </div>
 
+              {/* Galeri (Gallery Page) */}
+              <button
+                onClick={() => handlePageClick('gallery')}
+                className={`font-display text-sm font-semibold transition-colors cursor-pointer relative py-2 ${
+                  currentPage === 'gallery'
+                    ? 'text-luxury-gold'
+                    : 'text-gray-600 hover:text-luxury-gold'
+                }`}
+              >
+                {lang === 'EN' ? 'Gallery' : 'Galeri'}
+                {currentPage === 'gallery' && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-luxury-gold"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </button>
+
               {/* Kontak & Lokasi */}
               <button
                 onClick={() => handleSectionClick('contact')}
@@ -402,6 +421,18 @@ export default function Header({
                   </div>
                 )}
               </div>
+
+              {/* Mobile Galeri */}
+              <button
+                onClick={() => handlePageClick('gallery')}
+                className={`block w-full text-left px-4 py-2.5 font-display text-sm font-semibold rounded-lg transition-colors cursor-pointer ${
+                  currentPage === 'gallery'
+                    ? 'bg-amber-50 text-luxury-gold border-l-4 border-luxury-gold pl-3'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                {lang === 'EN' ? 'Gallery' : 'Galeri'}
+              </button>
 
               {/* Mobile Kontak & Lokasi */}
               <button
