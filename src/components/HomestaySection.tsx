@@ -6,14 +6,13 @@ import {
   Wifi, 
   Sparkles, 
   Bed, 
-  Coffee, 
   Tv, 
-  Car, 
   CheckCircle2, 
   MessageSquare,
-  ChevronRight,
-  Info,
-  Calendar
+  Users,
+  ShieldCheck,
+  Building,
+  Heart
 } from 'lucide-react';
 import { TRANSLATIONS } from '../utils/translations';
 
@@ -21,54 +20,143 @@ interface HomestaySectionProps {
   lang: 'ID' | 'EN';
 }
 
+export interface RoomType {
+  id: string;
+  name: string;
+  badge?: string;
+  capacity: string;
+  pricing: { pax: string; rate: string; totalNote?: string }[];
+  facilities: string[];
+  bedInfo: string;
+  bathroom: string;
+  tv: string;
+  image: string;
+  waMessage: string;
+}
+
 export default function HomestaySection({ lang }: HomestaySectionProps) {
   const t = TRANSLATIONS[lang];
-  const [activeTab, setActiveTab] = useState<'rja1' | 'rja2'>('rja1');
+  const [activeBranch, setActiveBranch] = useState<'rja1' | 'rja2'>('rja1');
+  const [activeRoomId, setActiveRoomId] = useState<string>('sweet-room');
 
-  const homestays = [
+  const rja1Rooms: RoomType[] = [
     {
-      id: 'rja1',
-      name: 'RJA 1 - Jaksa Agung Suprapto',
-      shortName: 'RJA 1',
-      address: 'Jl. Jaksa Agung Suprapto, Klojen, Kota Malang',
-      image: '/rja1.png',
-      badge: 'Pusat Kota Malang',
-      price: 'Hubungi Admin untuk Tarif',
-      description: lang === 'EN'
-        ? 'A cozy, aesthetic homestay strategically located in the heart of Malang city center near Jaksa Agung Suprapto main road.'
-        : 'Penginapan homestay estetik & nyaman berlokasi sangat strategis di pusat Kota Malang (dekat Jl. Jaksa Agung Suprapto). Cocok untuk liburan keluarga & rombongan.',
-      features: [
-        lang === 'EN' ? 'Spacious Bedrooms & Clean Beds' : 'Gedung 2 Lantai & Kamar Luas',
-        lang === 'EN' ? 'High Speed Wi-Fi & Smart TV' : 'Wi-Fi Cepat & Smart TV',
-        lang === 'EN' ? 'Full AC & Hot Water Shower' : 'Full AC & Water Heater Mandi',
-        lang === 'EN' ? 'Private Parking Area' : 'Area Parkir Mobil Luas & Aman',
-        lang === 'EN' ? 'Kitchen & Dining Tools' : 'Fasilitas Dapur & Alat Makan Complete'
+      id: 'sweet-room',
+      name: 'Sweet Room',
+      badge: 'Favorit Hemat (Tersedia 6 Kamar)',
+      capacity: 'Maksimal 2 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 117.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 58.500 / orang', totalNote: 'Total Rp 117.000' }
       ],
-      waMessage: 'Halo Yoga Transport, saya ingin booking/tanya ketersediaan Penginapan RJA 1 (Jl. Jaksa Agung Suprapto Malang).'
+      facilities: [
+        'Kamar Mandi Dalam Clean & Fresh',
+        'Kasur Single/Queen (Ukuran 120 x 200 cm)',
+        'Wi-Fi Cepat & Gratis 24 Jam',
+        'Kipas Angin & Gantungan Baju',
+        'Selimut & Perelengkapan Mandi'
+      ],
+      bedInfo: '1 Kasur (120 x 200 cm)',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Non TV',
+      image: '/rja1.png',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Sweet Room (Maks 2 orang).'
     },
     {
-      id: 'rja2',
-      name: 'RJA 2 - Tawangmangu',
-      shortName: 'RJA 2',
-      address: 'Jl. Tawangmangu, Lowokwaru, Kota Malang',
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1200',
-      badge: 'Aesthetic & Cozy',
-      price: 'Hubungi Admin untuk Tarif',
-      description: lang === 'EN'
-        ? 'A stylish pastel modern homestay in Tawangmangu Malang with complete home facilities for private vacations.'
-        : 'Penginapan homestay bernuansa pastel modern yang estetik di kawasan Tawangmangu Malang. Lingkungan tenang, bersih, dan nyaman.',
-      features: [
-        lang === 'EN' ? 'Pastel Aesthetic Interior' : 'Interior Pastel Estetik & Spot Foto',
-        lang === 'EN' ? 'High Speed Wi-Fi & Entertainment' : 'Wi-Fi Cepat & TV Hiburan',
-        lang === 'EN' ? 'Air Conditioned Rooms' : 'Kamar Nyaman Full AC',
-        lang === 'EN' ? 'Car & Motorbike Parking' : 'Parkir Mobil & Sepeda Motor',
-        lang === 'EN' ? 'Clean Bathrooms & Toiletries' : 'Kamar Mandi Bersih & Toiletries'
+      id: 'green-room',
+      name: 'Green Room',
+      badge: 'Family Favorite (Tersedia 3 Kamar)',
+      capacity: 'Maksimal 4 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 160.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 80.000 / orang', totalNote: 'Total Rp 160.000' },
+        { pax: '3 Orang', rate: 'Rp 60.000 / orang', totalNote: 'Total Rp 180.000' },
+        { pax: '4 Orang', rate: 'Rp 50.000 / orang', totalNote: 'Total Rp 200.000' }
       ],
-      waMessage: 'Halo Yoga Transport, saya ingin booking/tanya ketersediaan Penginapan RJA 2 (Jl. Tawangmangu Malang).'
+      facilities: [
+        'Kamar Mandi Dalam',
+        'Kasur Queen (160 x 200 cm) + Extra Bed (80x200 min 3 orang)',
+        'Televisi & Hiburan',
+        'Wi-Fi Cepat Gratis',
+        'Kipas Angin & Selimut Nyaman'
+      ],
+      bedInfo: '1 Kasur Queen (160x200 cm) + Extra Bed',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Ada TV',
+      image: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Green Room (Maks 4 orang).'
+    },
+    {
+      id: 'cheerful-room',
+      name: 'Cheerful Room',
+      badge: 'Cozy & Aesthetic',
+      capacity: 'Kapasitas 3 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 150.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 75.500 / orang', totalNote: 'Total Rp 151.000' },
+        { pax: '3 Orang', rate: 'Rp 50.000 / orang', totalNote: 'Total Rp 150.000' }
+      ],
+      facilities: [
+        'Kamar Mandi Dalam Clean & Fresh',
+        'Kasur Queen (160 x 200 cm)',
+        'Televisi Layar Datar',
+        'Wi-Fi Cepat & Kipas Angin',
+        'Gantungan Baju & Selimut'
+      ],
+      bedInfo: '1 Kasur Queen (160 x 200 cm)',
+      bathroom: 'Kamar Mandi Dalam',
+      tv: 'Ada TV',
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Cheerful Room (Kapasitas 3 orang).'
+    },
+    {
+      id: 'room-satu',
+      name: 'Room Satu (Group Room)',
+      badge: 'Kapasitas Rombongan (Max 5 Orang)',
+      capacity: 'Maksimal 5 Orang',
+      pricing: [
+        { pax: '1 Orang', rate: 'Rp 100.000 / orang' },
+        { pax: '2 Orang', rate: 'Rp 50.000 / orang', totalNote: 'Total Rp 100.000' },
+        { pax: '3 Orang', rate: 'Rp 43.000 / orang', totalNote: 'Total Rp 129.000' },
+        { pax: '4 - 5 Orang', rate: 'Rp 41.000 - Rp 43.000 / orang' }
+      ],
+      facilities: [
+        '2 Kasur Luas (Ukuran 120x200 cm & 160x200 cm)',
+        'Kamar Mandi Luar Bersih & Steril',
+        'Kipas Angin & Rak Baju',
+        'Wi-Fi Cepat Gratis',
+        'Selimut & Perelengkapan'
+      ],
+      bedInfo: '2 Kasur (120x200 & 160x200 cm)',
+      bathroom: 'Kamar Mandi Luar Bersih',
+      tv: 'Non TV',
+      image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin booking RJA 1 - Room Satu (Kapasitas rombongan max 5 orang).'
+    },
+    {
+      id: 'family-room',
+      name: 'Family Room / L-Room',
+      badge: 'Paket Rombongan Besar',
+      capacity: 'Kapasitas 6 - 8+ Orang',
+      pricing: [
+        { pax: 'Rombongan 6-8 Orang', rate: 'Mulai Rp 35.000 / orang' }
+      ],
+      facilities: [
+        'Ruangan Luas & Kasur Rombongan',
+        'Kamar Mandi Bersih',
+        'Wi-Fi Cepat Gratis',
+        'Area Kumpul Keluarga / Rombongan',
+        'Full Selimut & Perlengkapan'
+      ],
+      bedInfo: 'Multiple Beds / Family Layout',
+      bathroom: 'Kamar Mandi Bersih',
+      tv: 'Ada TV',
+      image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=800',
+      waMessage: 'Halo Yoga Transport, saya ingin info booking RJA 1 - Family Room / L-Room.'
     }
   ];
 
-  const currentHomestay = homestays.find(h => h.id === activeTab) || homestays[0];
+  const activeRoom = rja1Rooms.find(r => r.id === activeRoomId) || rja1Rooms[0];
 
   const handleWhatsApp = (msg: string) => {
     const waNumber = '628813305066';
@@ -81,136 +169,302 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <span className="font-display font-bold text-xs sm:text-sm text-luxury-gold tracking-widest uppercase bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200/60 inline-block">
-            {lang === 'EN' ? 'RECOMMENDED ACCOMMODATION' : 'REKOMENDASI PENGINAPAN & HOMESTAY'}
+          <span className="font-display font-bold text-xs sm:text-sm text-[#d97706] tracking-widest uppercase bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200/60 inline-block">
+            {lang === 'EN' ? 'OFFICIAL LODGING PARTNER' : 'KATALOG PENGINAPAN & HOMESTAY RJA'}
           </span>
           
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-gray-900 tracking-tight uppercase">
-            {lang === 'EN' ? 'HOMESTAY MALANG BY YOGA TRANSPORT' : 'PENGINAPAN HOMESTAY MALANG'}
+            {lang === 'EN' ? 'MALANG HOMESTAY ACCOMMODATION' : 'PENGINAPAN HOMESTAY MALANG'}
           </h2>
 
           <div className="w-16 h-1 bg-[#f59e0b] rounded-full mx-auto my-3" />
 
           <p className="font-sans text-gray-600 text-sm sm:text-base leading-relaxed">
             {lang === 'EN'
-              ? 'Enjoy comfortable private lodging options in Malang city for your holiday & tour group accommodation.'
-              : 'Nikmati pilihan penginapan homestay yang bersih, nyaman, estetik, dan strategis di Kota Malang untuk menyempurnakan liburan Anda.'}
+              ? 'Comfortable, clean, and strategic homestay lodging in Malang city center for your holiday and group tour stays.'
+              : 'Pilihan penginapan homestay estetik, bersih, dan berlokasi strategis di Kota Malang untuk melengkapi perjalanan liburan Anda.'}
           </p>
         </div>
 
-        {/* Tab Selector Buttons (RJA 1 & RJA 2) */}
-        <div className="flex justify-center gap-3 mb-10">
-          {homestays.map((hs) => {
-            const isActive = activeTab === hs.id;
-            return (
-              <button
-                key={hs.id}
-                onClick={() => setActiveTab(hs.id as any)}
-                className={`px-6 sm:px-8 py-3 rounded-full font-display font-bold text-xs sm:text-sm transition-all cursor-pointer shadow-sm flex items-center gap-2 border ${
-                  isActive
-                    ? 'bg-luxury-black text-luxury-gold border-luxury-gold shadow-md scale-[1.03]'
-                    : 'bg-white text-gray-700 border-gray-200 hover:border-luxury-gold hover:text-luxury-gold'
-                }`}
-              >
-                <Home className="w-4 h-4" />
-                <span>{hs.shortName}</span>
-                <span className={`text-[10px] px-2 py-0.5 rounded-full ${isActive ? 'bg-luxury-gold text-black' : 'bg-gray-100 text-gray-600'}`}>
-                  {hs.badge}
-                </span>
-              </button>
-            );
-          })}
+        {/* Branch Selector Tabs (RJA 1 vs RJA 2) */}
+        <div className="flex justify-center gap-3 mb-8">
+          <button
+            onClick={() => setActiveBranch('rja1')}
+            className={`px-6 sm:px-8 py-3 rounded-full font-display font-bold text-xs sm:text-sm transition-all cursor-pointer shadow-sm flex items-center gap-2 border ${
+              activeBranch === 'rja1'
+                ? 'bg-luxury-black text-luxury-gold border-luxury-gold shadow-md scale-[1.03]'
+                : 'bg-white text-gray-700 border-gray-200 hover:border-luxury-gold hover:text-luxury-gold'
+            }`}
+          >
+            <Building className="w-4 h-4" />
+            <span>RJA 1 - Jl. Jaksa Agung Suprapto</span>
+            <span className="text-[10px] bg-[#f59e0b] text-black px-2 py-0.5 rounded-full font-bold">
+              Pusat Kota
+            </span>
+          </button>
+
+          <button
+            onClick={() => setActiveBranch('rja2')}
+            className={`px-6 sm:px-8 py-3 rounded-full font-display font-bold text-xs sm:text-sm transition-all cursor-pointer shadow-sm flex items-center gap-2 border ${
+              activeBranch === 'rja2'
+                ? 'bg-luxury-black text-luxury-gold border-luxury-gold shadow-md scale-[1.03]'
+                : 'bg-white text-gray-700 border-gray-200 hover:border-luxury-gold hover:text-luxury-gold'
+            }`}
+          >
+            <Home className="w-4 h-4" />
+            <span>RJA 2 - Jl. Tawangmangu</span>
+            <span className="text-[10px] bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full font-bold">
+              Cozy & Pastel
+            </span>
+          </button>
         </div>
 
-        {/* Active Homestay Main Feature Card */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentHomestay.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12"
-          >
+        {activeBranch === 'rja1' ? (
+          <div className="space-y-8">
             
-            {/* Left: Image Container */}
-            <div className="lg:col-span-7 relative h-72 sm:h-96 lg:h-full bg-gray-900 overflow-hidden group">
-              <img
-                src={currentHomestay.image}
-                alt={currentHomestay.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              
-              <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                <span className="bg-[#f59e0b] text-gray-950 font-display font-bold text-[10px] uppercase px-3 py-1 rounded-md tracking-wider">
-                  {currentHomestay.badge}
-                </span>
-                <h3 className="font-display font-extrabold text-xl sm:text-2xl drop-shadow-md">
-                  {currentHomestay.name}
-                </h3>
-                <div className="flex items-center gap-1.5 text-xs text-gray-300">
-                  <MapPin className="w-3.5 h-3.5 text-[#f59e0b] shrink-0" />
-                  <span>{currentHomestay.address}</span>
-                </div>
+            {/* Interactive Room Catalog Selector Pills for RJA 1 */}
+            <div className="bg-amber-50/60 p-4 rounded-2xl border border-amber-200/60 space-y-3">
+              <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block text-center">
+                Pilih Tipe Kamar RJA 1 Malang:
+              </span>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {rja1Rooms.map((room) => {
+                  const isSelected = activeRoomId === room.id;
+                  return (
+                    <button
+                      key={room.id}
+                      onClick={() => setActiveRoomId(room.id)}
+                      className={`px-4 py-2 rounded-xl text-xs font-display font-bold transition-all cursor-pointer border ${
+                        isSelected
+                          ? 'bg-[#d97706] text-white border-[#d97706] shadow-md scale-[1.02]'
+                          : 'bg-white text-gray-700 border-gray-200 hover:border-[#d97706] hover:bg-amber-100/50'
+                      }`}
+                    >
+                      {room.name}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Right: Info & Features List */}
-            <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
-              
-              <div className="space-y-4">
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block">
-                    INFO PENGINAPAN
-                  </span>
-                  <h4 className="font-display font-extrabold text-xl text-gray-900 mt-0.5">
-                    {currentHomestay.name}
-                  </h4>
+            {/* Active Room Detail Display Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeRoom.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+                className="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12"
+              >
+                
+                {/* Left: Image Container */}
+                <div className="lg:col-span-6 relative h-64 sm:h-80 lg:h-full bg-gray-900 overflow-hidden group">
+                  <img
+                    src={activeRoom.image}
+                    alt={activeRoom.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                  
+                  <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                    <span className="bg-[#f59e0b] text-gray-950 font-display font-bold text-[10px] uppercase px-3 py-1 rounded-md tracking-wider">
+                      {activeRoom.badge}
+                    </span>
+                    <h3 className="font-display font-extrabold text-2xl drop-shadow-md">
+                      {activeRoom.name}
+                    </h3>
+                    <p className="font-sans text-xs text-gray-200 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-[#f59e0b] shrink-0" />
+                      <span>Jl. Jaksa Agung Suprapto, Klojen, Kota Malang</span>
+                    </p>
+                  </div>
                 </div>
 
-                <p className="font-sans text-gray-600 text-xs sm:text-sm leading-relaxed">
-                  {currentHomestay.description}
-                </p>
-
-                {/* Features List */}
-                <div className="space-y-2.5 pt-2 border-t border-gray-100">
-                  <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
-                    Fasilitas Lengkap:
-                  </span>
-                  {currentHomestay.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-gray-50 p-2.5 rounded-xl border border-gray-100">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>{feat}</span>
+                {/* Right: Detailed Room Specs & Pricing Matrix */}
+                <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+                  
+                  <div className="space-y-4">
+                    
+                    {/* Title & Capacity Header */}
+                    <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#d97706]">
+                          SPESIFIKASI KAMAR
+                        </span>
+                        <h4 className="font-display font-extrabold text-xl text-gray-900">
+                          {activeRoom.name}
+                        </h4>
+                      </div>
+                      <span className="bg-amber-50 text-[#d97706] font-display font-bold text-xs px-3 py-1 rounded-full border border-amber-200/60">
+                        {activeRoom.capacity}
+                      </span>
                     </div>
-                  ))}
+
+                    {/* Quick Specs Badges */}
+                    <div className="flex flex-wrap gap-2 text-xs font-semibold text-gray-700">
+                      <span className="bg-gray-100 px-3 py-1 rounded-lg flex items-center gap-1.5">
+                        <Bed className="w-4 h-4 text-[#d97706]" />
+                        {activeRoom.bedInfo}
+                      </span>
+                      <span className="bg-gray-100 px-3 py-1 rounded-lg flex items-center gap-1.5">
+                        <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                        {activeRoom.bathroom}
+                      </span>
+                      <span className="bg-gray-100 px-3 py-1 rounded-lg flex items-center gap-1.5">
+                        <Tv className="w-4 h-4 text-blue-600" />
+                        {activeRoom.tv}
+                      </span>
+                    </div>
+
+                    {/* PRICING MATRIX TABLE */}
+                    <div className="space-y-2 pt-1">
+                      <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
+                        Rincian Harga per Kapasitas (RJA 1):
+                      </span>
+                      <div className="bg-amber-50/40 rounded-xl p-3 border border-amber-100 space-y-2">
+                        {activeRoom.pricing.map((priceItem, pIdx) => (
+                          <div key={pIdx} className="flex items-center justify-between text-xs py-1 border-b border-amber-100/60 last:border-0">
+                            <span className="font-bold text-gray-700 flex items-center gap-1">
+                              <Users className="w-3.5 h-3.5 text-[#d97706]" />
+                              {priceItem.pax}
+                            </span>
+                            <div className="text-right">
+                              <span className="font-display font-bold text-[#d97706]">
+                                {priceItem.rate}
+                              </span>
+                              {priceItem.totalNote && (
+                                <span className="block text-[9px] text-gray-500 font-normal">
+                                  ({priceItem.totalNote})
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Facilities checklist */}
+                    <div className="space-y-2 pt-1">
+                      <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
+                        Fasilitas Kamar Included:
+                      </span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {activeRoom.facilities.map((fac, fIdx) => (
+                          <div key={fIdx} className="flex items-center gap-1.5 text-xs text-gray-600">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                            <span>{fac}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* Bottom Action Footer */}
+                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-4">
+                    <div>
+                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
+                        LOKASI STRATEGIS
+                      </span>
+                      <span className="font-display font-bold text-xs text-gray-900">
+                        Klojen Pusat Kota Malang
+                      </span>
+                    </div>
+
+                    <button
+                      onClick={() => handleWhatsApp(activeRoom.waMessage)}
+                      className="bg-[#25D366] hover:bg-[#20ba5a] text-white font-display font-bold text-xs py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                    >
+                      <MessageSquare className="w-4 h-4 fill-current" />
+                      <span>Booking {activeRoom.name}</span>
+                    </button>
+                  </div>
+
+                </div>
+
+              </motion.div>
+            </AnimatePresence>
+
+          </div>
+        ) : (
+          /* RJA 2 Display Card */
+          <div className="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-6 relative h-64 sm:h-80 lg:h-full bg-gray-900 overflow-hidden group">
+              <img
+                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1200"
+                alt="RJA 2 Tawangmangu Malang"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                <span className="bg-[#f59e0b] text-gray-950 font-display font-bold text-[10px] uppercase px-3 py-1 rounded-md tracking-wider">
+                  Pastel & Cozy
+                </span>
+                <h3 className="font-display font-extrabold text-2xl">
+                  RJA 2 - Jl. Tawangmangu Malang
+                </h3>
+                <p className="font-sans text-xs text-gray-200 flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#f59e0b] shrink-0" />
+                  <span>Jl. Tawangmangu, Lowokwaru, Kota Malang</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#d97706]">
+                    HOMESTAY RJA 2
+                  </span>
+                  <h4 className="font-display font-extrabold text-xl text-gray-900">
+                    Penginapan Tawangmangu Malang
+                  </h4>
+                </div>
+                <p className="font-sans text-gray-600 text-xs sm:text-sm leading-relaxed">
+                  Penginapan homestay bernuansa pastel modern yang estetik di kawasan Tawangmangu Malang. Lingkungan tenang, bersih, dan dekat kawasan kampus & pusat kuliner.
+                </p>
+                <div className="space-y-2 pt-2 border-t border-gray-100">
+                  <span className="font-display font-bold text-xs text-gray-900 uppercase tracking-wider block">
+                    Fasilitas Utama:
+                  </span>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-gray-50 p-2.5 rounded-xl">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <span>Kamar Tidur Estetik Full AC & Wi-Fi Cepat</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-gray-50 p-2.5 rounded-xl">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <span>Kamar Mandi Dalam & Toiletries Lengkap</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-gray-50 p-2.5 rounded-xl">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <span>Area Parkir Mobil & Motor Aman</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Bottom Price & Booking Action */}
               <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-4">
                 <div>
                   <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
-                    STATUS & TARIF
+                    TARIF RJA 2
                   </span>
-                  <span className="font-display font-bold text-sm sm:text-base text-[#d97706]">
-                    {currentHomestay.price}
+                  <span className="font-display font-bold text-sm text-[#d97706]">
+                    Hubungi Admin untuk Informasi Kamar
                   </span>
                 </div>
-
                 <button
-                  onClick={() => handleWhatsApp(currentHomestay.waMessage)}
-                  className="bg-[#25D366] hover:bg-[#20ba5a] text-white font-display font-bold text-xs py-3 px-5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                  onClick={() => handleWhatsApp('Halo Yoga Transport, saya ingin tanya ketersediaan & booking RJA 2 Tawangmangu Malang.')}
+                  className="bg-[#25D366] hover:bg-[#20ba5a] text-white font-display font-bold text-xs py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
                 >
                   <MessageSquare className="w-4 h-4 fill-current" />
-                  <span>Tanya / Booking</span>
+                  <span>Booking RJA 2</span>
                 </button>
               </div>
-
             </div>
-
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        )}
 
       </div>
     </section>
