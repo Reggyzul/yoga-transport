@@ -18,7 +18,7 @@ export default function Hero({ onRentClick, lang }: HeroProps) {
       subtitle: lang === 'EN' 
         ? 'Enjoy an unforgettable golden sunrise moment with our premium tour packages.'
         : 'Nikmati momen golden sunrise tak terlupakan dengan paket wisata premium kami.',
-      image: '/tours_bromo.jpg',
+      image: '/hero_bromo.png',
       waMsg: 'Halo Yoga Transport, saya ingin konsultasi gratis mengenai paket wisata Bromo.'
     },
     {
@@ -27,7 +27,7 @@ export default function Hero({ onRentClick, lang }: HeroProps) {
       subtitle: lang === 'EN'
         ? 'Best private holiday experience in Batu city theme parks and natural wonders.'
         : 'Pengalaman liburan privat terbaik keliling destinasi populer Malang dan Kota Batu.',
-      image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=1600',
+      image: '/hero_batu.png',
       waMsg: 'Halo Yoga Transport, saya ingin bertanya tentang paket wisata Malang & Batu.'
     },
     {
@@ -36,7 +36,7 @@ export default function Hero({ onRentClick, lang }: HeroProps) {
       subtitle: lang === 'EN'
         ? 'Adventure to the Niagara of Indonesia with our professional local guides.'
         : 'Petualangan seru menuju Niagara-nya Indonesia dengan panduan driver berpengalaman.',
-      image: 'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&q=80&w=1600',
+      image: '/hero_tumpak.png',
       waMsg: 'Halo Yoga Transport, saya tertarik dengan trip Tumpak Sewu.'
     }
   ];
