@@ -1,3 +1,11 @@
+export interface PackageTier {
+  id: 'standard' | 'premium' | 'platinum';
+  name: string;
+  badge?: string;
+  inclusions: string[];
+  inclusionsEn: string[];
+}
+
 export interface TourPackage {
   id: string;
   title: string;
@@ -17,9 +25,64 @@ export interface TourPackage {
   includedEn?: string[];
   excluded: string[];
   excludedEn?: string[];
+  packageTiers: PackageTier[];
   itinerary: { title: string; desc: string }[];
   waMessage: string;
 }
+
+export const COMMON_PACKAGE_TIERS: PackageTier[] = [
+  {
+    id: 'standard',
+    name: 'Standard',
+    badge: 'Hemat & Nyaman',
+    inclusions: [
+      'Snack & Air Mineral Selama Tour',
+      'Kalender Eksklusif Yoga Transport',
+      'Fasilitas Transportasi & Driver Complete'
+    ],
+    inclusionsEn: [
+      'Snack & Mineral Water During Tour',
+      'Exclusive Yoga Transport Calendar',
+      'Full Vehicle & Driver Services'
+    ]
+  },
+  {
+    id: 'premium',
+    name: 'Premium',
+    badge: 'Paling Populer',
+    inclusions: [
+      'Banner Trip Custom Rombongan/Keluarga',
+      'Kalender Eksklusif Yoga Transport',
+      'Snack Box & Air Mineral',
+      '2x Makan Resto / Kuliner Khas'
+    ],
+    inclusionsEn: [
+      'Customized Group Trip Banner',
+      'Exclusive Yoga Transport Calendar',
+      'Snack Box & Mineral Water',
+      '2x Full Meals at Local Restaurant'
+    ]
+  },
+  {
+    id: 'platinum',
+    name: 'Platinum',
+    badge: 'VIP All-Inclusive',
+    inclusions: [
+      'Banner Trip Custom Rombongan/Keluarga',
+      'Kalender Eksklusif Yoga Transport',
+      'Snack Box & Air Mineral',
+      'Souvenir / Oleh-oleh Khas Malang',
+      '2x Makan Resto / Kuliner Khas'
+    ],
+    inclusionsEn: [
+      'Customized Group Trip Banner',
+      'Exclusive Yoga Transport Calendar',
+      'Snack Box & Mineral Water',
+      'Special Malang Souvenir Gift',
+      '2x Premium Meals at Recommended Restaurants'
+    ]
+  }
+];
 
 export const TOUR_PACKAGES: TourPackage[] = [
   {
@@ -51,15 +114,13 @@ export const TOUR_PACKAGES: TourPackage[] = [
       'Armada Transportasi Privat AC (Jemput Hotel/Stasiun/Bandara)',
       'Sewa Jeep 4x4 Privat di Bromo',
       'Driver Pengalaman & BBM',
-      'Tiket Masuk Wisata Taman Nasional Bromo Tengger Semeru',
-      'Air Mineral Kualitas Premium'
+      'Tiket Masuk Wisata Taman Nasional Bromo Tengger Semeru'
     ],
     includedEn: [
       'Private AC Car Transfer (Hotel/Station/Airport Pickup)',
       'Private 4x4 Jeep Charter at Bromo',
       'Experienced Driver & Fuel Included',
-      'Bromo Tengger Semeru National Park Entrance Tickets',
-      'Complimentary Mineral Water'
+      'Bromo Tengger Semeru National Park Entrance Tickets'
     ],
     excluded: [
       'Kebutuhan & Pengeluaran Pribadi',
@@ -71,6 +132,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
       'Horse Rental at Bromo Crater (Optional)',
       'Driver & Guide Tipping (Voluntary)'
     ],
+    packageTiers: COMMON_PACKAGE_TIERS,
     itinerary: [
       { title: '00:00 - Penjemputan', desc: 'Penjemputan peserta di Kota Malang / Batu / Surabaya.' },
       { title: '03:00 - Transfer Jeep 4x4', desc: 'Tiba di Rest Area Bromo & berpindah ke Jeep 4x4 menuju Penanjakan Sunrise Point.' },
@@ -110,26 +172,23 @@ export const TOUR_PACKAGES: TourPackage[] = [
       'Mobil Transportasi AC Privat',
       'Driver Ramah & BBM Included',
       'Local Trekking Guide Tumpak Sewu',
-      'Tiket Masuk Semua Objek Wisata',
-      'Air Mineral'
+      'Tiket Masuk Semua Objek Wisata'
     ],
     includedEn: [
       'Private AC Vehicle Transport',
       'Friendly Driver & Fuel Included',
       'Local Experienced Trekking Guide',
-      'Entrance Tickets to All Sites',
-      'Bottled Mineral Water'
+      'Entrance Tickets to All Sites'
     ],
     excluded: [
       'Sewa Sandal Trekking / Anti Selip',
-      'Makan Siang & Pengeluaran Pribadi',
       'Tips Guide / Driver'
     ],
     excludedEn: [
       'Trekking Footwear Rental',
-      'Lunch & Personal Expenses',
       'Guide & Driver Tipping'
     ],
+    packageTiers: COMMON_PACKAGE_TIERS,
     itinerary: [
       { title: '06:00 - Penjemputan', desc: 'Penjemputan di Malang/Batu dan berangkat menuju Pronojiwo Lumajang.' },
       { title: '08:30 - Tiba di Tumpak Sewu', desc: 'Briefing safety dengan Local Guide & menikmati Panorama Atas Tumpak Sewu.' },
@@ -151,7 +210,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
     durationEn: '1 Day',
     badge: null,
     image: '/pantai_malang.png',
-    description: 'Paket wisata Malang 4 hari 3 malam ini menawarkan pengalaman yang lengkap, mulai dari wisata edukasi, petualangan di alam, hingga kuliner khas.',
+    description: 'Paket wisata pantai selatan Malang menawarkan pengalaman yang lengkap, mulai dari wisata edukasi, petualangan di alam, hingga kuliner khas.',
     descriptionEn: 'Explore the stunning tropical southern coastline of Malang with picturesque cliff views and white beaches.',
     highlights: [
       'Pantai Balekambang (Pura di Atas Laut)',
@@ -168,25 +227,22 @@ export const TOUR_PACKAGES: TourPackage[] = [
     included: [
       'Mobil Privat AC + BBM',
       'Driver Ramah Berpengalaman',
-      'Tiket Masuk Seluruh Pantai',
-      'Air Mineral'
+      'Tiket Masuk Seluruh Pantai'
     ],
     includedEn: [
       'Private AC Car + Fuel',
       'Friendly Experienced Driver',
-      'Entrance Tickets to All Beaches',
-      'Mineral Water'
+      'Entrance Tickets to All Beaches'
     ],
     excluded: [
-      'Makan Siang Seafood & Kuliner',
       'Sewa Gazebo / Wahana Pantai',
       'Pengeluaran Pribadi'
     ],
     excludedEn: [
-      'Seafood Meals & Snacks',
       'Gazebo / Beach Rides Rental',
       'Personal Expenses'
     ],
+    packageTiers: COMMON_PACKAGE_TIERS,
     itinerary: [
       { title: '07:00 - Penjemputan', desc: 'Jemput di lokasi Malang Kota / Batu.' },
       { title: '09:30 - Pantai Balekambang', desc: 'Menikmati keindahan pulau karang Pura Ismoyo Balekambang.' },
@@ -226,26 +282,23 @@ export const TOUR_PACKAGES: TourPackage[] = [
       'Mobil Transportasi AC Privat 2 Hari',
       'Sewa Jeep Bromo 4x4 Privat',
       'Driver + BBM Selama Tour',
-      'Tiket Masuk Wisata Sesuai Program',
-      'Hotel / Penginapan 1 Malam (Opsional)'
+      'Tiket Masuk Wisata Sesuai Program'
     ],
     includedEn: [
       '2 Days Private AC Vehicle Transport',
       'Private 4x4 Bromo Jeep Charter',
       'Driver & Fuel for Full Itinerary',
-      'Entrance Tickets to Programmed Sites',
-      '1 Night Hotel Accommodation (Optional)'
+      'Entrance Tickets to Programmed Sites'
     ],
     excluded: [
-      'Makan Selama Tour',
       'Sewa Kuda Bromo',
       'Pengeluaran Pribadi'
     ],
     excludedEn: [
-      'Meals Outside Program',
       'Bromo Horse Riding',
       'Personal Souvenirs'
     ],
+    packageTiers: COMMON_PACKAGE_TIERS,
     itinerary: [
       { title: 'Hari 1 - Wisata Kota Batu', desc: 'Jemput Bandara/Stasiun -> Flora Wisata Santerra -> Museum Angkut -> Check-in Hotel Batu/Malang & Istirahat.' },
       { title: 'Hari 2 - Bromo Sunrise & Drop Off', desc: '00:00 Penjemputan Bromo -> Golden Sunrise -> Kawah Bromo & Savana -> Kembali ke Malang & Drop off.' }
@@ -281,26 +334,23 @@ export const TOUR_PACKAGES: TourPackage[] = [
       'Mobil Privat AC 3 Hari Full',
       'Driver Ramah & BBM',
       'Tiket Masuk Semua Wisata Utama',
-      'Air Mineral Setiap Hari',
       'Antar Jemput Bandara / Stasiun'
     ],
     includedEn: [
       '3 Full Days Private AC Vehicle',
       'Experienced Driver & Fuel',
       'Entrance Tickets to All Main Theme Parks',
-      'Daily Bottled Mineral Water',
       'Airport/Train Station Airport Transfers'
     ],
     excluded: [
       'Hotel / Penginapan (Bisa dibantu booking)',
-      'Makan Pribadi',
       'Tips Driver & Pengeluaran Pribadi'
     ],
     excludedEn: [
       'Hotel Accommodation (Can be added on request)',
-      'Personal Meals',
       'Driver Tipping & Personal Expenses'
     ],
+    packageTiers: COMMON_PACKAGE_TIERS,
     itinerary: [
       { title: 'Hari 1 - Flora Santerra & BNS', desc: 'Jemput Stasiun/Bandara -> Flora Wisata Santerra -> Wisata Petik Apel -> Malam di BNS -> Hotel.' },
       { title: 'Hari 2 - Jatim Park 2 & Museum Angkut', desc: 'Sarapan -> Jatim Park 2 (Batu Secret Zoo & Museum Satwa) -> Sore ke Museum Angkut -> Kuliner Malam Batu.' },

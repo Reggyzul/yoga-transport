@@ -1,6 +1,6 @@
-import React from 'react';
-import { X, Clock, CheckCircle2, AlertCircle, MapPin, Compass, MessageSquare, Sparkles } from 'lucide-react';
-import { TourPackage } from '../data/tours';
+import React, { useState } from 'react';
+import { X, Clock, CheckCircle2, AlertCircle, MapPin, Compass, MessageSquare, Sparkles, Award, Star, Gift } from 'lucide-react';
+import { TourPackage, PackageTier } from '../data/tours';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface TourDetailModalProps {
@@ -10,16 +10,22 @@ interface TourDetailModalProps {
 }
 
 export default function TourDetailModal({ tour, onClose, lang }: TourDetailModalProps) {
+  const [selectedTierId, setSelectedTierId] = useState<'standard' | 'premium' | 'platinum'>('premium');
+
   if (!tour) return null;
+
+  const currentTier = tour.packageTiers.find(t => t.id === selectedTierId) || tour.packageTiers[1];
 
   const handleWhatsApp = () => {
     const waNumber = '628813305066';
-    window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(tour.waMessage)}`, '_blank', 'noreferrer');
+    const tierText = currentTier ? ` [Kategori ${currentTier.name.toUpperCase()}: ${currentTier.inclusions.join(', ')}]` : '';
+    const fullMsg = `${tour.waMessage}${tierText}`;
+    window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(fullMsg)}`, '_blank', 'noreferrer');
   };
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 sm:p-6 md:p-10">
+      <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 sm:p-6 md:p-10 font-sans">
         
         {/* Backdrop overlay */}
         <motion.div
@@ -36,7 +42,7 @@ export default function TourDetailModal({ tour, onClose, lang }: TourDetailModal
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden z-10 max-h-[90vh] flex flex-col my-auto border border-gray-100"
+          className="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden z-10 max-h-[92vh] flex flex-col my-auto border border-gray-100"
         >
           {/* Close Button Header Floating */}
           <button
@@ -48,13 +54,13 @@ export default function TourDetailModal({ tour, onClose, lang }: TourDetailModal
           </button>
 
           {/* Modal Header Banner Image */}
-          <div className="relative h-64 sm:h-72 w-full overflow-hidden shrink-0 bg-gray-900">
+          <div className="relative h-60 sm:h-72 w-full overflow-hidden shrink-0 bg-gray-900">
             <img
               src={tour.image}
               alt={tour.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
 
             {/* Badge */}
             {tour.badge && (
@@ -64,15 +70,15 @@ export default function TourDetailModal({ tour, onClose, lang }: TourDetailModal
             )}
 
             {/* Banner Text overlay */}
-            <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#f59e0b] bg-black/40 px-3 py-1 rounded-full backdrop-blur-md">
+            <div className="absolute bottom-5 left-6 right-6 text-white space-y-1">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#f59e0b] bg-black/50 px-3 py-1 rounded-full backdrop-blur-md">
                 <Clock className="w-3.5 h-3.5" />
                 {lang === 'EN' ? tour.durationEn || tour.duration : tour.duration}
               </span>
               <h2 className="font-display font-extrabold text-2xl sm:text-3xl tracking-tight text-white leading-tight">
                 {lang === 'EN' ? tour.titleEn || tour.title : tour.title}
               </h2>
-              <p className="font-display font-bold text-lg text-[#f59e0b]">
+              <p className="font-display font-bold text-base sm:text-lg text-[#f59e0b]">
                 {lang === 'EN' ? tour.priceTextEn || tour.priceText : tour.priceText}
               </p>
             </div>
@@ -92,8 +98,65 @@ export default function TourDetailModal({ tour, onClose, lang }: TourDetailModal
               </p>
             </div>
 
+            {/* PACKAGE TIERS SELECTION (Standard, Premium, Platinum) */}
+            <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent rounded-2xl p-5 border border-amber-200/80 space-y-4">
+              <div className="flex items-center justify-between">
+                <h4 className="font-display font-bold text-sm text-gray-900 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-[#d97706]" />
+                  {lang === 'EN' ? 'Choose Package Category' : 'Pilihan Kategori Paket Wisata'}
+                </h4>
+                <span className="text-[10px] font-bold text-[#d97706] uppercase bg-amber-100/80 px-2.5 py-1 rounded-full">
+                  3 Variasi Paket
+                </span>
+              </div>
+
+              {/* Tier Switcher Buttons */}
+              <div className="grid grid-cols-3 gap-2">
+                {tour.packageTiers.map((tier) => {
+                  const isSelected = selectedTierId === tier.id;
+                  return (
+                    <button
+                      key={tier.id}
+                      onClick={() => setSelectedTierId(tier.id)}
+                      className={`py-3 px-2 rounded-xl text-center transition-all cursor-pointer border font-display flex flex-col items-center justify-center gap-1 ${
+                        isSelected
+                          ? 'bg-[#d97706] text-white border-[#d97706] shadow-md scale-[1.02]'
+                          : 'bg-white text-gray-700 border-gray-200 hover:border-[#d97706] hover:bg-amber-50/50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-1">
+                        {tier.id === 'standard' && <Star className="w-3.5 h-3.5" />}
+                        {tier.id === 'premium' && <Sparkles className="w-3.5 h-3.5" />}
+                        {tier.id === 'platinum' && <Gift className="w-3.5 h-3.5" />}
+                        <span className="font-extrabold text-xs uppercase tracking-wider">{tier.name}</span>
+                      </div>
+                      <span className={`text-[9px] font-medium ${isSelected ? 'text-amber-100' : 'text-gray-400'}`}>
+                        {tier.badge}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Display Current Selected Tier Bonuses */}
+              <div className="bg-white rounded-xl p-4 border border-amber-100 shadow-sm space-y-2">
+                <p className="text-xs font-bold text-gray-900 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#d97706]" />
+                  {lang === 'EN' ? `Fasilitas Kategori ${currentTier.name}:` : `Bonus Fasilitas Kategori ${currentTier.name}:`}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                  {(lang === 'EN' ? currentTier.inclusionsEn : currentTier.inclusions).map((inc, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs font-semibold text-gray-700 bg-amber-50/40 p-2 rounded-lg border border-amber-100/50">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>{inc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* Highlights Grid */}
-            <div className="bg-amber-50/60 rounded-2xl p-5 border border-amber-100/80 space-y-3">
+            <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100 space-y-3">
               <h4 className="font-display font-bold text-sm text-gray-900 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#d97706]" />
                 {lang === 'EN' ? 'Destinations & Highlights' : 'Destinasi & Daya Tarik Utama'}
@@ -115,7 +178,7 @@ export default function TourDetailModal({ tour, onClose, lang }: TourDetailModal
               <div className="space-y-3">
                 <h4 className="font-display font-bold text-sm text-gray-900 flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  {lang === 'EN' ? 'Included Facilities' : 'Fasilitas Termasuk'}
+                  {lang === 'EN' ? 'Included Standard Facilities' : 'Fasilitas Utama Included'}
                 </h4>
                 <ul className="space-y-2">
                   {(lang === 'EN' ? tour.includedEn || tour.included : tour.included).map((inc, i) => (
@@ -169,10 +232,10 @@ export default function TourDetailModal({ tour, onClose, lang }: TourDetailModal
           <div className="p-4 sm:p-6 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
             <div>
               <span className="text-xs text-gray-500 uppercase font-semibold tracking-wider block">
-                {lang === 'EN' ? 'Price Estimate' : 'Estimasi Harga'}
+                {lang === 'EN' ? 'Kategori Terpilih' : 'Kategori Terpilih'}
               </span>
-              <span className="font-display font-extrabold text-xl text-[#d97706]">
-                {lang === 'EN' ? tour.priceTextEn || tour.priceText : tour.priceText}
+              <span className="font-display font-extrabold text-lg text-[#d97706] uppercase">
+                PAKET {currentTier.name}
               </span>
             </div>
 
@@ -189,7 +252,7 @@ export default function TourDetailModal({ tour, onClose, lang }: TourDetailModal
                 className="flex-grow sm:flex-grow-0 px-6 py-3 bg-[#25D366] hover:bg-[#20ba5a] text-white font-display font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4 fill-current" />
-                <span>{lang === 'EN' ? 'Book via WhatsApp' : 'Pesan via WhatsApp'}</span>
+                <span>{lang === 'EN' ? `Book ${currentTier.name} via WA` : `Pesan ${currentTier.name} via WA`}</span>
               </button>
             </div>
           </div>

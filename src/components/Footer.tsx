@@ -1,5 +1,5 @@
 import React from 'react';
-import { Headset, Phone, MapPin } from 'lucide-react';
+import { Headset, Phone, MapPin, Instagram } from 'lucide-react';
 import { TRANSLATIONS } from '../utils/translations';
 
 interface FooterProps {
@@ -116,6 +116,24 @@ export default function Footer({ onNavClick, lang }: FooterProps) {
                     className="text-sm font-display font-bold text-white hover:text-luxury-gold mt-0.5 block"
                   >
                     08813305066
+                  </a>
+                </div>
+              </div>
+
+              {/* Instagram Official */}
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shrink-0">
+                  <Instagram className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase font-bold text-gray-500">Instagram Official</p>
+                  <a 
+                    href="https://instagram.com/yoga_transport"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm font-display font-bold text-rose-400 hover:text-luxury-gold mt-0.5 block"
+                  >
+                    @yoga_transport
                   </a>
                 </div>
               </div>

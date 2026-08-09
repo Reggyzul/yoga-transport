@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock } from 'lucide-react';
+import { Clock, Gift, Sparkles, Award } from 'lucide-react';
 import { TOUR_PACKAGES, TourPackage } from '../data/tours';
 import TourDetailModal from './TourDetailModal';
 import { motion } from 'motion/react';
@@ -26,8 +26,8 @@ export default function ToursList({ lang }: ToursListProps) {
           
           <p className="font-sans text-gray-500 text-sm sm:text-base leading-relaxed">
             {lang === 'EN' 
-              ? 'Favorite tourist destinations of choice for travelers with premium service' 
-              : 'Destinasi favorit pilihan wisatawan dengan layanan premium'}
+              ? 'Favorite tourist destinations with Standard, Premium, and Platinum package tiers' 
+              : 'Destinasi favorit pilihan wisatawan dengan variasi paket Standard, Premium, & Platinum'}
           </p>
         </div>
 
@@ -78,9 +78,27 @@ export default function ToursList({ lang }: ToursListProps) {
                 </p>
 
                 {/* Description Text */}
-                <p className="font-sans text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="font-sans text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
                   {lang === 'EN' ? pkg.descriptionEn || pkg.description : pkg.description}
                 </p>
+
+                {/* Package Tier Badge Row */}
+                <div className="bg-amber-50/50 rounded-xl p-3 border border-amber-100/80 space-y-1.5 mb-4">
+                  <span className="font-display font-bold text-[10px] uppercase text-[#d97706] tracking-wider block">
+                    Tersedia 3 Pilihan Kategori:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5 text-[10px] font-bold">
+                    <span className="bg-white px-2 py-0.5 rounded border border-amber-200 text-gray-700">
+                      Standard
+                    </span>
+                    <span className="bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300 text-[#d97706]">
+                      Premium
+                    </span>
+                    <span className="bg-amber-500 text-white px-2 py-0.5 rounded">
+                      Platinum
+                    </span>
+                  </div>
+                </div>
 
                 {/* Divider Line */}
                 <hr className="border-t border-gray-200/70 mb-4 mt-auto" />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe, ChevronDown, MapPin, Phone, Clock } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown, MapPin, Phone, Clock, Instagram } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TRANSLATIONS } from '../utils/translations';
 
@@ -75,6 +75,16 @@ export default function Header({ activeSection, onNavClick, lang, setLang, curre
             >
               <Phone className="w-3.5 h-3.5 text-luxury-gold shrink-0 animate-pulse" />
               <span>08813305066</span>
+            </a>
+            <div className="h-3 w-px bg-white/20 hidden sm:block" />
+            <a 
+              href="https://instagram.com/yoga_transport" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="flex items-center gap-1.5 hover:text-luxury-gold transition-colors font-semibold text-rose-400"
+            >
+              <Instagram className="w-3.5 h-3.5 shrink-0" />
+              <span>@yoga_transport</span>
             </a>
             <div className="h-3 w-px bg-white/20 hidden sm:block" />
             <div className="flex items-center gap-1.5">
