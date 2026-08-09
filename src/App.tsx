@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
 import Services from './components/Services';
 import ToursList from './components/ToursList';
 import CarList from './components/CarList';
@@ -41,7 +40,7 @@ export default function App() {
 
       // Track active section on home page
       if (currentPage === 'home') {
-        const sections = ['home', 'about', 'services', 'steps', 'contact'];
+        const sections = ['home', 'services', 'tours', 'steps', 'contact'];
         const scrollPosition = window.scrollY + 250; // Offset
 
         for (const section of sections) {
@@ -128,19 +127,16 @@ export default function App() {
             {/* 1. Hero Section */}
             <Hero onRentClick={() => handleNavClick('rentals')} lang={lang} />
 
-            {/* 2. Section: Mengapa Memilih Kami? */}
-            <About lang={lang} />
-
-            {/* 3. Section: Layanan Utama */}
+            {/* 2. Section: Layanan Utama */}
             <Services lang={lang} />
 
-            {/* 4. Section: Paket Wisata Terbaik Kami */}
+            {/* 3. Section: Paket Wisata Terbaik Kami */}
             <ToursList lang={lang} />
 
-            {/* 5. Section: Cara Pemesanan Mudah */}
+            {/* 4. Section: Cara Pemesanan Mudah */}
             <BookingSteps lang={lang} />
 
-            {/* 6. Testimonials */}
+            {/* 5. Testimonials */}
             <Testimonials lang={lang} />
           </>
         ) : currentPage === 'tours' ? (
