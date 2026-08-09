@@ -118,7 +118,7 @@ export default function Header({
               <img
                 src="/logo.avif"
                 alt="Yoga Transport Emblem Logo"
-                className="h-10 sm:h-12 w-auto max-h-[48px] object-contain transition-transform duration-500 group-hover:scale-105"
+                className="h-11 sm:h-13 w-auto max-h-[52px] object-contain transition-transform duration-500 group-hover:scale-105 filter drop-shadow-sm"
               />
               <div className="flex flex-col text-left">
                 <span className="font-display font-extrabold text-base sm:text-lg text-gray-900 leading-none tracking-tight group-hover:text-[#d97706] transition-colors">

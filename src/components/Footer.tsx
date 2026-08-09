@@ -42,9 +42,9 @@ export default function Footer({ onNavClick, lang }: FooterProps) {
           <div className="md:col-span-5 space-y-6 text-left">
             <div className="flex items-center gap-3">
               <img
-                src="/logo.png"
-                alt="Yoga Transport Logo"
-                className="h-24 sm:h-28 w-auto max-h-[90px] object-contain filter drop-shadow-lg brightness-110"
+                src="/logo.avif"
+                alt="Yoga Transport Emblem Logo"
+                className="h-20 sm:h-24 w-auto max-h-[96px] object-contain filter drop-shadow-xl"
               />
             </div>
 
