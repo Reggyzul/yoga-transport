@@ -443,15 +443,19 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
       {/* POP-UP MODAL CATALOG FOR RJA 1 HOMESTAY */}
       <AnimatePresence>
         {showCatalogModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/70 backdrop-blur-md">
+          <div 
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-md"
+            onClick={() => setShowCatalogModal(false)}
+          >
             
             {/* Modal Box Container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-3xl shadow-2xl border border-gray-100 max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden relative"
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl shadow-2xl border border-gray-100 max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden relative z-10"
             >
               
               {/* Modal Header */}
@@ -471,8 +475,13 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                 </div>
 
                 <button
-                  onClick={() => setShowCatalogModal(false)}
-                  className="text-gray-400 hover:text-white bg-white/10 p-2 rounded-full transition-colors cursor-pointer"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowCatalogModal(false);
+                  }}
+                  className="text-gray-300 hover:text-white bg-white/15 hover:bg-white/25 p-2.5 rounded-full transition-all cursor-pointer shrink-0 z-20"
+                  aria-label="Tutup Modal"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -623,10 +632,14 @@ export default function HomestaySection({ lang }: HomestaySectionProps) {
                   ©2026 Yoga Transport Malang - Official RJA 1 Catalog
                 </span>
                 <button
-                  onClick={() => setShowCatalogModal(false)}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-display font-bold text-xs py-2 px-5 rounded-xl transition-colors cursor-pointer"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowCatalogModal(false);
+                  }}
+                  className="bg-gray-900 hover:bg-black text-white font-display font-bold text-xs py-2.5 px-6 rounded-xl transition-all cursor-pointer shadow-sm shrink-0"
                 >
-                  Tutup Pop-Up
+                  Tutup Katalog
                 </button>
               </div>
 
